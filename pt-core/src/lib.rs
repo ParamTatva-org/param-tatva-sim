@@ -1,1 +1,1 @@
-pub fn hello()->u32{42}
+pub fn hello() -> u32 { 42 }

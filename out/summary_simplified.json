@@ -1,7 +1,7 @@
 {
   "mode": "simplified",
   "electron_energy_GeV": 10.0,
-  "sum_measured_GeV": 12.013730962392,
+  "sum_measured_GeV": 11.94976560955773,
   "n_cells": 1024,
-  "config_used": "/mnt/data/param-tatva-sim/configs/demo_electron.yaml"
+  "config_used": "/mnt/data/param-tatva-sim-all/configs/demo_electron.yaml"
 }
