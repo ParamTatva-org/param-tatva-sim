@@ -1,9 +1,6 @@
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
+requires=['setuptools>=61.0']
+build-backend='setuptools.build_meta'
 [project]
-name = "pt-sim"
-version = "0.1.0"
-description = "Param Tatva simulation: detector (simplified+accurate) + forces"
-dependencies = ["numpy", "pandas", "matplotlib", "pyyaml"]
+name='pt-sim'
+version='0.1.0'

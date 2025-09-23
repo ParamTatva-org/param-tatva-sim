@@ -1,6 +1,0 @@
-{
-  "electron_energy_GeV": 10.0,
-  "ecal_sum_meas_GeV": 11.96614893097468,
-  "n_cells": 1024,
-  "config_used": "/Users/prabhatsingh/param-tatva-sim/configs/demo_electron.yaml"
-}

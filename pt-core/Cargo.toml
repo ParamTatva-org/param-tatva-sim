@@ -1,8 +1,32 @@
+
 [package]
 name = "pt-core"
-version = "0.1.0"
+version = "0.3.0"
 edition = "2021"
+license = "Apache-2.0"
+description = "Param Tatva core: spectrum, compactification, potentials"
+repository = ""
 
 [lib]
 name = "pt_core"
 path = "src/lib.rs"
+crate-type = ["rlib", "cdylib"]
+
+[features]
+default = []
+python = ["pyo3/extension-module"]
+
+[dependencies]
+# Optional Py bindings (enabled with --features python)
+#pyo3 = { version = "0.21", optional = true }
+pyo3 = { version = "0.22", features = [] }
+
+[dev-dependencies]
+criterion = "0.5"
+
+[[bench]]
+name = "core_bench"
+harness = false
+
+[package.metadata.pyo3]
+extension-module = true

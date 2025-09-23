@@ -1,0 +1,14 @@
+/Users/prabhatsingh/param-tatva-sim/pt-core/target/release/deps/pyo3_build_config-0b51f857576fe8eb.d: /Users/prabhatsingh/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.22.6/src/lib.rs /Users/prabhatsingh/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.22.6/src/errors.rs /Users/prabhatsingh/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.22.6/src/impl_.rs /Users/prabhatsingh/param-tatva-sim/pt-core/target/release/build/pyo3-build-config-ca308c8e85ff3da4/out/pyo3-build-config-file.txt /Users/prabhatsingh/param-tatva-sim/pt-core/target/release/build/pyo3-build-config-ca308c8e85ff3da4/out/pyo3-build-config.txt
+
+/Users/prabhatsingh/param-tatva-sim/pt-core/target/release/deps/libpyo3_build_config-0b51f857576fe8eb.rlib: /Users/prabhatsingh/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.22.6/src/lib.rs /Users/prabhatsingh/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.22.6/src/errors.rs /Users/prabhatsingh/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.22.6/src/impl_.rs /Users/prabhatsingh/param-tatva-sim/pt-core/target/release/build/pyo3-build-config-ca308c8e85ff3da4/out/pyo3-build-config-file.txt /Users/prabhatsingh/param-tatva-sim/pt-core/target/release/build/pyo3-build-config-ca308c8e85ff3da4/out/pyo3-build-config.txt
+
+/Users/prabhatsingh/param-tatva-sim/pt-core/target/release/deps/libpyo3_build_config-0b51f857576fe8eb.rmeta: /Users/prabhatsingh/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.22.6/src/lib.rs /Users/prabhatsingh/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.22.6/src/errors.rs /Users/prabhatsingh/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.22.6/src/impl_.rs /Users/prabhatsingh/param-tatva-sim/pt-core/target/release/build/pyo3-build-config-ca308c8e85ff3da4/out/pyo3-build-config-file.txt /Users/prabhatsingh/param-tatva-sim/pt-core/target/release/build/pyo3-build-config-ca308c8e85ff3da4/out/pyo3-build-config.txt
+
+/Users/prabhatsingh/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.22.6/src/lib.rs:
+/Users/prabhatsingh/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.22.6/src/errors.rs:
+/Users/prabhatsingh/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.22.6/src/impl_.rs:
+/Users/prabhatsingh/param-tatva-sim/pt-core/target/release/build/pyo3-build-config-ca308c8e85ff3da4/out/pyo3-build-config-file.txt:
+/Users/prabhatsingh/param-tatva-sim/pt-core/target/release/build/pyo3-build-config-ca308c8e85ff3da4/out/pyo3-build-config.txt:
+
+# env-dep:CARGO_PKG_VERSION=0.22.6
+# env-dep:OUT_DIR=/Users/prabhatsingh/param-tatva-sim/pt-core/target/release/build/pyo3-build-config-ca308c8e85ff3da4/out
