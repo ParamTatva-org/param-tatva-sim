@@ -1,0 +1,72 @@
+{
+  "root": "/Users/prabhatsingh/param-tatva-sim",
+  "generated_at_utc": "2025-09-23T22:07:29.001663Z",
+  "files": [
+    {
+      "path": "pt-sim/pt_sim/__init__.py",
+      "size": 20,
+      "content": "__version__='0.1.0'\n",
+      "sha256": "9cc673adaf1d8d3576b3a2ac97485ac5ec193cbc9947be6bb526c2ecaf68d51d"
+    },
+    {
+      "path": "pt-sim/pt_sim/demo_forces.py",
+      "size": 2168,
+      "content": "import os, json\nfrom pathlib import Path\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom .forces.gauge import Particle\nfrom .forces.em import UniformField, integrate_motion\nfrom .forces.potentials import coulomb_potential, yukawa_potential, string_potential\nfrom .forces.qcd_toy import flux_tube_map\n\ndef demo_lorentz(outdir):\n  out=Path(outdir); out.mkdir(parents=True, exist_ok=True)\n  e=Particle(q=-1.0,m=0.511)\n  field=UniformField(E_vec=(0,0,0), B_vec=(0,0,1.0))\n  xs,vs=integrate_motion(e, field, (0,0,0), (0.7,0,0), dt=0.05, steps=1200)\n  plt.figure(); plt.plot(xs[:,0], xs[:,1], lw=1.2); plt.axis('equal'); plt.xlabel('x'); plt.ylabel('y'); plt.title('Electron in Uniform B (spiral)')\n  p=out/'force_lorentz_spiral.png'; plt.savefig(p,dpi=160,bbox_inches='tight'); plt.close(); return str(p)\n\ndef demo_potentials(outdir):\n  out=Path(outdir); out.mkdir(parents=True, exist_ok=True)\n  r=np.linspace(0.05,10.0,1000); Vc=coulomb_potential(r,1.0); Vy=yukawa_potential(r,1.0,0.7); Vs=string_potential(r,0.2,0.0)\n  plt.figure(); plt.plot(r,Vc,label='Coulomb 1/r'); plt.plot(r,Vy,label='Yukawa e^{-mr}/r'); plt.plot(r,Vs,label='String κr'); plt.ylim(0,10); plt.legend(); plt.xlabel('r'); plt.ylabel('V(r)'); plt.title('Force Potentials (toy)')\n  p=out/'force_potentials.png'; plt.savefig(p,dpi=160,bbox_inches='tight'); plt.close(); return str(p)\n\ndef demo_flux_tube(outdir):\n  out=Path(outdir); out.mkdir(parents=True, exist_ok=True)\n  X,Y,E=flux_tube_map(n=160,sep=10.0,width=1.5)\n  plt.figure(); plt.imshow(E,origin='lower',extent=[X.min(),X.max(),Y.min(),Y.max()],interpolation='bilinear')\n  plt.colorbar(label='Normalized energy density'); plt.xlabel('x'); plt.ylabel('y'); plt.title('Toy Color Flux Tube (QCD-like)')\n  p=out/'force_flux_tube.png'; plt.savefig(p,dpi=160,bbox_inches='tight'); plt.close(); return str(p)\n\ndef run_all(outdir):\n  paths={'lorentz_spiral':demo_lorentz(outdir),'potentials':demo_potentials(outdir),'flux_tube':demo_flux_tube(outdir)}\n  json.dump(paths, open(Path(outdir)/'forces_outputs.json','w'), indent=2)\n  print('Wrote', paths)\n\nif __name__=='__main__':\n  import sys; run_all(sys.argv[1] if len(sys.argv)>1 else '../out')\n",
+      "sha256": "18732c64445eea84aedffc36ca3731dd96533fe321854aa44a53b5182afb486f"
+    },
+    {
+      "path": "pt-sim/pt_sim/demo_run.py",
+      "size": 2275,
+      "content": "import os, json\nfrom pathlib import Path\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom .paramsutra import load\nfrom .physics import simplified as ps\nfrom .physics import accurate as pa\n\ndef run(config_path: str, outdir: str):\n  cfg = load(config_path)\n  out = Path(outdir); out.mkdir(parents=True, exist_ok=True)\n  mode = getattr(cfg, 'mode', 'simplified')\n  E = 10.0\n  n = cfg.ecal_geom.n\n  depth = np.linspace(0, cfg.ecal_geom.depth_lambda, n)\n  if mode == 'simplified':\n    longE = ps.longitudinal_profile(depth, cfg.shower.a, cfg.shower.b, E)\n    lat = ps.lateral_template(n, cfg.shower.lateral_sigma_cm, cfg.ecal_geom.cell_size_cm)\n    e_true = np.zeros((n,n))\n    for e in longE: e_true += e * lat\n    meas = np.clip(e_true * cfg.ecal_geom.sampling_fraction + np.random.normal(0.0, cfg.ecal_geom.noise_sigma, size=(n,n)), 0, None)\n    tag = 'simplified'\n  else:\n    longE = pa.longitudinal_em(depth, E, cfg.material.X0_cm, cfg.material.Ec_MeV)\n    lat = pa.lateral_em(n, cfg.ecal_geom.cell_size_cm, cfg.material.RM_cm)\n    e_true = np.zeros((n,n))\n    for e in longE: e_true += e * lat\n    rng = np.random.default_rng(12345)\n    meas = pa.digitize_energy(e_true, cfg.material.sampling_fraction, cfg.material.light_yield_pe_per_GeV, cfg.material.electronics_noise_GeV, rng)\n    tag = 'accurate'\n  # Plots\n  plt.figure(); plt.imshow(meas, origin='lower', interpolation='nearest'); plt.colorbar(label='Energy (GeV)'); plt.title(f'ECAL Energy Image (electron, {tag})'); plt.savefig(out / f'ecal_image_{tag}.png', dpi=160, bbox_inches='tight'); plt.close()\n  plt.figure(); plt.plot(depth, longE); plt.xlabel('Depth (X0 units)'); plt.ylabel('Energy per layer (GeV)'); plt.title(f'Longitudinal Profile (electron, {tag})'); plt.savefig(out / f'longitudinal_profile_{tag}.png', dpi=160, bbox_inches='tight'); plt.close()\n  json.dump({'mode': mode, 'electron_energy_GeV': E, 'sum_measured_GeV': float(meas.sum()), 'n_cells': int(n*n), 'config_used': os.path.abspath(config_path)}, open(out / f'summary_{tag}.json','w'), indent=2)\n  print('Wrote detector outputs for', tag)\n\nif __name__ == '__main__':\n  import sys\n  cfg = sys.argv[1] if len(sys.argv) > 1 else '../configs/demo_electron.yaml'\n  outdir = sys.argv[2] if len(sys.argv) > 2 else '../out'\n  run(cfg, outdir)\n",
+      "sha256": "ee1978ff52f7bc4449b6e97d17d27f4714cd1bbcd0f69effcd21e9c27c37255a"
+    },
+    {
+      "path": "pt-sim/pt_sim/fastcore.py",
+      "size": 738,
+      "content": "\n\"\"\"Thin wrapper that prefers Rust-accelerated functions when available.\n\nBuild the Python extension from pt-core with:\n  cd pt-core\n  cargo build --release --features python\n\nThen expose the built library to Python as `pt_core_py` (adjust PYTHONPATH/LD_LIBRARY_PATH\nor copy the built .so/.pyd next to this file).\n\"\"\"\nimport math\ntry:\n    import pt_core_py as _rc\n    HAVE_RUST = True\nexcept Exception:\n    _rc = None\n    HAVE_RUST = False\n\ndef kk_winding_mass2(m1,m2,w1,w2,r1,r2,alpha_prime):\n    if HAVE_RUST:\n        return float(_rc.kk_winding_mass2_py(int(m1),int(m2),int(w1),int(w2), float(r1),float(r2),float(alpha_prime)))\n    # Python fallback\n    return (m1/r1)**2 + (m2/r2)**2 + (w1*r1/alpha_prime)**2 + (w2*r2/alpha_prime)**2\n",
+      "sha256": "a51f546b910bec97d01bd1b75eddc7063953cb6e7bbdf75f3b591bdac1c80fef"
+    },
+    {
+      "path": "pt-sim/pt_sim/forces/em.py",
+      "size": 782,
+      "content": "import numpy as np\nfrom .gauge import Particle, Field, lorentz_force\nclass UniformField(Field):\n  def __init__(self, E_vec=(0,0,0), B_vec=(0,0,1)): \n    self._E = np.array(E_vec, float); self._B = np.array(B_vec, float)\n  def E(self, t, x): return self._E\n  def B(self, t, x): return self._B\ndef integrate_motion(particle, field, x0, v0, dt, steps):\n  x=np.array(x0,float); v=np.array(v0,float); xs=np.zeros((steps,3)); vs=np.zeros((steps,3))\n  for i in range(steps):\n    E=field.E(i*dt,x); B=field.B(i*dt,x); a=lorentz_force(particle,v,E,B)/max(particle.m,1e-9)\n    v_half=v + 0.5*dt*a; x = x + dt*v_half\n    E2=field.E((i+1)*dt,x); B2=field.B((i+1)*dt,x); a2=lorentz_force(particle,v_half,E2,B2)/max(particle.m,1e-9)\n    v = v_half + 0.5*dt*a2\n    xs[i]=x; vs[i]=v\n  return xs,vs\n",
+      "sha256": "304f334fc87904fc3723df50c5ac3144931252b10f816734c777f46b72832820"
+    },
+    {
+      "path": "pt-sim/pt_sim/forces/gauge.py",
+      "size": 250,
+      "content": "from dataclasses import dataclass\nimport numpy as np\n@dataclass\nclass Particle: q: float; m: float\nclass Field:\n  def E(self,t,x): return np.zeros(3)\n  def B(self,t,x): return np.zeros(3)\ndef lorentz_force(p, v, E, B): return p.q*(E + np.cross(v,B))\n",
+      "sha256": "1bef0907dc052ff3708eda47c5ff31013072225d128d3ec458c055b78932e8d5"
+    },
+    {
+      "path": "pt-sim/pt_sim/forces/potentials.py",
+      "size": 240,
+      "content": "import numpy as np\ndef coulomb_potential(r,alpha=1.0): r=np.maximum(r,1e-6); return alpha/r\ndef yukawa_potential(r,g=1.0,m=1.0): r=np.maximum(r,1e-6); return (g**2)*np.exp(-m*r)/r\ndef string_potential(r,kappa=1.0,c=0.0): return kappa*r + c\n",
+      "sha256": "4a285db8ddf669e82f5c15cfd31f305ead7e74f7cde603e8b5755eed2c5103f4"
+    },
+    {
+      "path": "pt-sim/pt_sim/forces/qcd_toy.py",
+      "size": 386,
+      "content": "import numpy as np\ndef flux_tube_map(n=160, sep=10.0, width=1.5):\n  x=np.linspace(-sep,sep,n); y=np.linspace(-sep,sep,n); X,Y=np.meshgrid(x,y,indexing='xy')\n  tube=np.exp(-0.5*(Y/width)**2)*np.exp(-0.1*((np.abs(X)-sep/2)**2))\n  blob1=np.exp(-0.5*(((X+sep/2)**2+Y**2)/(width**2)))\n  blob2=np.exp(-0.5*(((X-sep/2)**2+Y**2)/(width**2)))\n  E=tube + 0.7*(blob1+blob2)\n  return X,Y,E/E.max()\n",
+      "sha256": "aa3a1baad4fbdc45b5a30a36cb1604f1c1c76bb48e5951e6258d8043871e5739"
+    },
+    {
+      "path": "pt-sim/pt_sim/paramsutra.py",
+      "size": 1263,
+      "content": "import yaml\nfrom dataclasses import dataclass\n\n@dataclass\nclass PTGlobal:\n  alpha_prime: float = 1.0\n  intercept: float = 1.0\n\n@dataclass\nclass ElectronTarget:\n  mass_mev: float = 0.511\n  charge: int = -1\n  spin: float = 0.5\n\n@dataclass\nclass ECALGeom:\n  n: int = 32\n  cell_size_cm: float = 1.0\n  moliere_radius_cm: float = 2.0\n  depth_lambda: float = 25.0\n  sampling_fraction: float = 0.9\n  noise_sigma: float = 0.002\n\n@dataclass\nclass ShowerParams:\n  a: float = 4.0\n  b: float = 0.3\n  lateral_sigma_cm: float = 1.2\n\n@dataclass\nclass Config:\n  global_pt: PTGlobal\n  electron: ElectronTarget\n  ecal_geom: ECALGeom\n  shower: ShowerParams\n\n@dataclass\nclass Material:\n  name: str = \"PbWO4\"\n  X0_cm: float = 0.89\n  RM_cm: float = 2.0\n  Ec_MeV: float = 9.0\n  sampling_fraction: float = 0.9\n  light_yield_pe_per_GeV: float = 20000.0\n  electronics_noise_GeV: float = 0.002\n\ndef load(path: str):\n  d = yaml.safe_load(open(path, 'r'))\n  gp = PTGlobal(**d.get('global_pt', {}))\n  el = ElectronTarget(**d.get('electron', {}))\n  eg = ECALGeom(**d.get('ecal_geom', {}))\n  sp = ShowerParams(**d.get('shower', {}))\n  cfg = Config(gp, el, eg, sp)\n  # Attach optional fields\n  cfg.mode = d.get('mode', 'simplified')\n  cfg.material = Material(**d.get('material', {}))\n  return cfg\n",
+      "sha256": "1b292e5715d3f1f6c9989f15824fedced01fbae3ec41344baa653cea50ee94e2"
+    },
+    {
+      "path": "pt-sim/pt_sim/physics/accurate.py",
+      "size": 1196,
+      "content": "import numpy as np\ndef _gamma_profile(depth, a, b, E):\n  xs = np.linspace(0, depth.max(), 4096)\n  ys = (xs**(a-1)) * np.exp(-b*xs)\n  norm = np.trapz(ys, xs)\n  return (depth**(a-1)) * np.exp(-b*depth) * (E / norm)\ndef longitudinal_em(depth, E_GeV, X0_cm, Ec_MeV):\n  E_MeV = E_GeV * 1e3\n  a = 1.0 + 0.5 * np.log(max(E_MeV, 1.0) / max(Ec_MeV, 1.0))\n  b = 1.0\n  return _gamma_profile(depth, a, b, E_GeV)\ndef lateral_em(n, cell_size_cm, RM_cm, core_frac=0.8):\n  idx = np.arange(n) - (n-1)/2\n  X, Y = np.meshgrid(idx, idx, indexing='xy')\n  X = X * cell_size_cm; Y = Y * cell_size_cm\n  R2 = X**2 + Y**2\n  sc = 0.3 * RM_cm; st = 1.0 * RM_cm\n  Gc = np.exp(-0.5 * R2 / (sc**2))\n  Gt = np.exp(-0.5 * R2 / (st**2))\n  M = core_frac * Gc + (1.0 - core_frac) * Gt\n  return M / M.sum()\ndef digitize_energy(ecal_true, sampling_fraction, light_yield_pe_per_GeV, electronics_noise_GeV, rng):\n  mean_signal = sampling_fraction * ecal_true\n  mean_pe = mean_signal * light_yield_pe_per_GeV\n  pe = rng.normal(mean_pe, np.sqrt(np.maximum(mean_pe, 1.0)))\n  pe = np.clip(pe, 0.0, None)\n  signal = pe / light_yield_pe_per_GeV\n  return np.clip(signal + rng.normal(0.0, electronics_noise_GeV, size=ecal_true.shape), 0, None)\n",
+      "sha256": "b0d039cc7061d18dec7b90d8fc4c66393a856988eb60c52239429390f7b18552"
+    },
+    {
+      "path": "pt-sim/pt_sim/physics/simplified.py",
+      "size": 484,
+      "content": "import numpy as np\ndef longitudinal_profile(depth, a, b, total_energy):\n  xs = np.linspace(0, depth.max(), 2048)\n  ys = (xs**(a-1)) * np.exp(-b*xs)\n  norm = np.trapz(ys, xs)\n  return (depth**(a-1)) * np.exp(-b*depth) * (total_energy / norm)\ndef lateral_template(n, sigma_cm, cell_size_cm):\n  idx = np.arange(n) - (n-1)/2\n  X, Y = np.meshgrid(idx, idx, indexing='xy')\n  X = X * cell_size_cm; Y = Y * cell_size_cm\n  G = np.exp(-0.5 * (X**2 + Y**2) / (sigma_cm**2))\n  return G / G.sum()\n",
+      "sha256": "1afc0a1a9fe55ed4f0a9599d631b750a438b187c16f43c70d974fd06248fbf7a"
+    }
+  ]
+}
