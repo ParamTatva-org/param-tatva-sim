@@ -1,4 +1,6 @@
-# 卍 Param Tatva Simulation — How universe came into existence, and continues to do so? 卍
+# 卍 Param Tatva Simulation 卍
+## Question: How universe came into existence, and continues to do so? 
+## Answer: Let's find out. 
 
 ⚛️ **Particles + Forces + Detector Simulation**
 This repository implements the **Param Tatva Simulation**, a unifying framework inspired by string theory, where **Param Tatva** (the fundamental string) gives rise to both particles and forces.

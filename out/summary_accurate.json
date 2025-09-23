@@ -3,5 +3,5 @@
   "electron_energy_GeV": 10.0,
   "sum_measured_GeV": 11.907532472721275,
   "n_cells": 1024,
-  "config_used": "/mnt/data/param-tatva-sim-all/configs/demo_electron_accurate.yaml"
+  "config_used": "/Users/prabhatsingh/param-tatva-sim/configs/demo_electron_accurate.yaml"
 }
