@@ -1,0 +1,7 @@
+{
+  "mode": "accurate",
+  "electron_energy_GeV": 10.0,
+  "sum_measured_GeV": 11.826592080133498,
+  "n_cells": 1024,
+  "config_used": "/Users/prabhatsingh/param-tatva-sim/configs/demo_electron_accurate.yaml"
+}

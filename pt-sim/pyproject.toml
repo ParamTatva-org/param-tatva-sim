@@ -4,4 +4,4 @@ build-backend='setuptools.build_meta'
 [project]
 name='pt-sim'
 version='0.0.1'
-dependencies=['numpy','pandas','matplotlib','pyyaml']
+dependencies=['numpy','matplotlib','pyyaml']
