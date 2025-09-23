@@ -1,0 +1,4 @@
+global_pt: {alpha_prime: 1.0, intercept: 1.0}
+electron: {mass_mev: 0.511, charge: -1, spin: 0.5}
+ecal_geom: {n: 32, cell_size_cm: 1.0, moliere_radius_cm: 2.0, depth_lambda: 25.0, sampling_fraction: 0.9, noise_sigma: 0.002}
+shower: {a: 4.0, b: 0.30, lateral_sigma_cm: 1.2}
