@@ -3,7 +3,7 @@
 A full Markdown explainer showing how Param Tatva emerges from the **14 Maheshwara Sutras**, with **two levels of continuation**:
 
 1. **Primary Continuation (Prathama Srota)** – Each sutra’s **anubandha** (marker) links to the **first sound of the next sutra**.
-2. **Secondary Continuation (It-Pratyaya Srota)** – Each sutra’s **anubandha** connects to specific other sutra positions (not always 7‑4). The mapping is explicit and finite.
+2. **Secondary Continuation (It-Pratyaya Srota)** – Each sutra’s **anubandha** connects to specific other sutra positions. The mapping is explicit and finite.
 
 ---
 
