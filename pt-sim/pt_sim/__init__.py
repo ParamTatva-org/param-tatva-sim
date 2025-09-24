@@ -4,5 +4,8 @@ __version__ = "0.2.0"
 from . import physics as physics  # re-export
 from . import forces as forces    # re-export
 from . import io as io            # re-export
+from . import ptk_kernel as ptk_kernel
+
 
 __all__ = ["physics", "forces", "io", "__version__"]
+__all__.append("ptk_kernel")

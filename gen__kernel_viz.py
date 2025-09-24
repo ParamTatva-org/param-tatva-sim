@@ -1,5 +1,10 @@
-import json
+import os, json
 import matplotlib.pyplot as plt
+
+res_path = "out/ptk_emission_result.json"
+
+res = json.load(open(res_path)) if os.path.exists(res_path) else None
+
 
 # Load kernel JSON
 with open("ptk.v1.json", "r", encoding="utf-8") as f:
@@ -57,6 +62,20 @@ for nid,(x,y) in coords.items():
     ax.text(x,y,labels.get(nid,""), fontsize=8,
             ha="center", va="center")
 
+
+if res:
+    # fields: highlight support edges
+    field_edge_ids = set(eid for f in res["fields"] for eid in f["support_edges"])
+    for e in ptk["edges"]:
+        if e["id"] in field_edge_ids:
+            x1,y1 = coords[e["source"]]; x2,y2 = coords[e["target"]]
+            ax.plot([x1,x2],[y1,y2], lw=2.4, alpha=0.35)  # thicker wash
+
+    # particles: draw star markers at locus nodes
+    for p in res["particles"]:
+        x,y = coords[p["locus"]]
+        ax.plot(x,y, marker="*", ms=12, mec="black", mfc="gold", zorder=5)
+        
 plt.title("Param Tatva Kernel — Positive (green) & Negative (red) flows")
 plt.tight_layout()
 outpath = "ptk_overlay_flows.png"
