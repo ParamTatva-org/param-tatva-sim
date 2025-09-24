@@ -43,3 +43,7 @@ ignore_missing_imports = true
 strict_optional = true
 warn_redundant_casts = true
 warn_unused_ignores = true
+
+
+[tool.ruff.lint]
+ignore = ["E701","E501"]
