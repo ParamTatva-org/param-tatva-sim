@@ -1,3 +1,5 @@
+# ruff: noqa: E501
+# ruff: noqa: E701
 import numpy as np
 from typing import Dict, Any, List
 #from ..physics.simplified import longitudinal_profile, lateral_template
