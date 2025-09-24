@@ -13,3 +13,11 @@ target-version = "py311"
 
 [tool.ruff.lint]
 extend-select = ["E", "F"]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=7",
+  "numpy>=1.23",
+  "matplotlib>=3.7",
+  "scipy>=1.10",
+]
