@@ -1,4 +1,4 @@
-# 卍 Param Tatva Simulation 卍
+# 卐 Param Tatva Simulation 卍
 
 **Question:** How did the universe come into existence—and how does it keep doing so?
 **Answer:** Let’s find out.
