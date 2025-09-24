@@ -27,7 +27,12 @@ def run(config_path: str, outdir: str) -> str:
 
     if mode == "simplified":
         longE = simp_longitudinal_profile(depth, cfg["shower"]["alpha"], cfg["shower"]["beta"], E)
-        lat = simp_lateral_template(n, cfg["shower"]["lateral_sigma_cm"], cfg["ecal_geom"]["cell_size_cm"])
+        
+        lat = simp_lateral_template(
+            n,
+            cfg["shower"]["lateral_sigma_cm"],
+            cfg["ecal_geom"]["cell_size_cm"],
+        )
         e_true = np.zeros((n, n))
         for e in longE:
             e_true += e * lat
@@ -39,7 +44,13 @@ def run(config_path: str, outdir: str) -> str:
         )
         tag = "simplified"
     else:
-        longE = acc_longitudinal_em(depth, E, X0_cm=cfg["material"]["X0_cm"], Ec_MeV=cfg["material"]["Ec_MeV"])
+ 
+        longE = acc_longitudinal_em(
+            depth,
+            E,
+            X0_cm=cfg["material"]["X0_cm"],
+            Ec_MeV=cfg["material"]["Ec_MeV"],
+        )
         lat = acc_lateral_em(n, cfg["ecal_geom"]["cell_size_cm"], cfg["material"]["RM_cm"])
         rng = np.random.default_rng(12345)
         meas = acc_digitize_energy(
