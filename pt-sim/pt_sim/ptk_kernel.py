@@ -1,3 +1,5 @@
+# ruff: noqa: E501
+# ruff: noqa: E701
 # Write a robust, reference Python kernel for "sound emission" interactions over PTK.
 # It will:
 # - Load PTK v1 JSON
@@ -7,9 +9,11 @@
 # - Emit particles and fields from residual energies (can produce multiple outputs)
 # - Return a structured result JSON for study (generation + detection stubs)
 
-import json, math, uuid, random
+import json
+import math
+import uuid
 from dataclasses import dataclass, asdict
-from typing import List, Dict, Tuple, Optional, Any
+from typing import List, Dict, Optional, Any
 
 ptk_path = "ptk.v1.json"
 
@@ -178,7 +182,7 @@ class PTKKernel:
                     P.sort(key=lambda x: x[3])
                     N.sort(key=lambda x: x[3])
                     i=j=0
-                    residual_edges_for_field = set([edge_id])
+                    set([edge_id])
                     E_field_accum = 0.0
                     while i < len(P) and j < len(N):
                         p, n = P[i], N[j]
