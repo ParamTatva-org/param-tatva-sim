@@ -1,20 +1,22 @@
 from pathlib import Path
+from typing import Union
 import json
-
 import numpy as np
 import matplotlib.pyplot as plt
 
-from .forces.gauge import Particle, UniformField  # adjust if your paths differ
-from .forces.em import integrate_motion           # legacy NR integrator
-from .forces.potentials import (                  # adjust import path if needed
+from .forces.gauge import Particle
+from .forces.em import integrate_motion, UniformField
+from .forces.potentials import (
     coulomb_potential,
     yukawa_potential,
     string_potential,
-    flux_tube_map,
 )
+from .forces.qcd_toy import flux_tube_map
+
+Pathish = Union[str, Path]
 
 
-def demo_lorentz(outdir: str) -> str:
+def demo_lorentz(outdir: Pathish) -> str:
     out = Path(outdir)
     out.mkdir(parents=True, exist_ok=True)
 
@@ -35,7 +37,7 @@ def demo_lorentz(outdir: str) -> str:
     return str(png_path)
 
 
-def demo_potentials(outdir: str) -> str:
+def demo_potentials(outdir: Pathish) -> str:
     out = Path(outdir)
     out.mkdir(parents=True, exist_ok=True)
 
@@ -60,7 +62,7 @@ def demo_potentials(outdir: str) -> str:
     return str(png_path)
 
 
-def demo_flux_tube(outdir: str) -> str:
+def demo_flux_tube(outdir: Pathish) -> str:
     out = Path(outdir)
     out.mkdir(parents=True, exist_ok=True)
 
@@ -84,7 +86,7 @@ def demo_flux_tube(outdir: str) -> str:
     return str(png_path)
 
 
-def run_all(outdir: str) -> str:
+def run_all(outdir: Pathish) -> str:
     out = Path(outdir)
     out.mkdir(parents=True, exist_ok=True)
 

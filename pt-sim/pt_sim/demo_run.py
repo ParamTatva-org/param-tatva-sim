@@ -1,12 +1,18 @@
 import json
 from pathlib import Path
-
 import numpy as np
 import matplotlib.pyplot as plt
 
-from .physics import simplified as ps
-from .physics import accurate as pa
-from .paramsutra import load  # adjust if your config loader lives elsewhere
+from .physics.simplified import (
+    longitudinal_profile as simp_longitudinal_profile,
+    lateral_template as simp_lateral_template,
+)
+from .physics.accurate import (
+    longitudinal_em as acc_longitudinal_em,
+    lateral_em as acc_lateral_em,
+    digitize_energy as acc_digitize_energy,
+)
+from .paramsutra import load
 
 
 def run(config_path: str, outdir: str) -> str:
@@ -20,8 +26,8 @@ def run(config_path: str, outdir: str) -> str:
     depth = np.linspace(0.0, cfg.shower.depth_X0, n)
 
     if mode == "simplified":
-        longE = ps.longitudinal_profile(depth, cfg.shower.alpha, cfg.shower.beta, E)
-        lat = ps.lateral_template(n, cfg.shower.lateral_sigma_cm, cfg.ecal_geom.cell_size_cm)
+        longE = simp_longitudinal_profile(depth, cfg["shower"]["alpha"], cfg["shower"]["beta"], E)
+        lat = simp_lateral_template(n, cfg["shower"]["lateral_sigma_cm"], cfg["ecal_geom"]["cell_size_cm"])
         e_true = np.zeros((n, n))
         for e in longE:
             e_true += e * lat
@@ -33,19 +39,23 @@ def run(config_path: str, outdir: str) -> str:
         )
         tag = "simplified"
     else:
-        longE = pa.longitudinal_em(depth, E, X0_cm=cfg.material.X0_cm, Ec_MeV=cfg.material.Ec_MeV)
-        lat = pa.lateral_em(n, cfg.ecal_geom.cell_size_cm, cfg.material.RM_cm)
+        longE = acc_longitudinal_em(depth, E, X0_cm=cfg["material"]["X0_cm"], Ec_MeV=cfg["material"]["Ec_MeV"])
+        lat = acc_lateral_em(n, cfg["ecal_geom"]["cell_size_cm"], cfg["material"]["RM_cm"])
+        rng = np.random.default_rng(12345)
+        meas = acc_digitize_energy(
+            e_true,
+            cfg["material"]["sampling_fraction"],
+            cfg["material"]["light_yield_pe_per_GeV"],
+            cfg["material"]["electronics_noise_sigma"],
+            rng=rng,
+        )
+
+
+        
         e_true = np.zeros((n, n))
         for e in longE:
             e_true += e * lat
-        rng = np.random.default_rng(12345)
-        meas = pa.digitize_energy(
-            e_true,
-            cfg.material.sampling_fraction,
-            cfg.material.light_yield_pe_per_GeV,
-            cfg.material.electronics_noise_sigma,
-            rng=rng,
-        )
+        
         tag = "accurate"
 
     # Plots

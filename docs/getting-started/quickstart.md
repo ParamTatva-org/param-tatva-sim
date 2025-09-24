@@ -29,3 +29,15 @@ See Sprints → Week 1 for commands and acceptance criteria.
 ruff pt-sim
 mypy pt-sim
 pytest -q
+
+
+
+## `docs/architecture/overview.md`
+```md
+# Architecture Overview
+
+- **pt-core/**: Rust kernels (steppers, hot loops, benches) exposed via PyO3.
+- **pt-sim/**: Python SDK and orchestration.
+- Optional plugins: Geant4 backend, ACTS tracking.
+
+Design tenets: modular, testable, deterministic, interop-first (HepMC3/ROOT/GDML).
