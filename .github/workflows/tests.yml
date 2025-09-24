@@ -32,6 +32,18 @@ jobs:
 
       - name: Type check (MyPy)
         run: python -m mypy --ignore-missing-imports pt-sim/pt_sim
+      
+      - name: Force-install test deps
+        run: |
+          set -euxo pipefail
+          python -m pip install --upgrade pip
+          pip install --upgrade numpy pytest
+          python - <<'PY'
+          import importlib.util, sys
+          print('Python:', sys.version)
+          print('Has numpy?', importlib.util.find_spec('numpy') is not None)
+          print('Has pytest?', importlib.util.find_spec('pytest') is not None)
+          PY
 
       - name: Run unit + physics tests
         run: pytest -q
