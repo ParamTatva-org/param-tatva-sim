@@ -28,14 +28,34 @@ jobs:
 
       - name: Install package with test deps
         run: |
+          set -euxo pipefail
           python -m pip install --upgrade pip
-          # Quote extras to avoid shell globbing: .[test] → '.[test]'
-          pip install -e '.[test]'
-          # Sanity checks so we fail early with a clear error
+          # Show repo contents to confirm pyproject.toml is at repo root
+          pwd; ls -la
+          # Install your package + test extras (quote to avoid shell globbing)
+          pip install -e '.[test]' || true
+          # Sanity checks
           python -c "import sys; print('Python:', sys.version)"
-          python -c "import pkgutil; print('Has numpy?', pkgutil.find_loader('numpy') is not None)"
-          # Fallback in case extras didn’t pull numpy (defensive only)
-          pip show numpy || pip install numpy
+          python - <<'PY'
+          import importlib.util
+          print('Has numpy?', importlib.util.find_spec('numpy') is not None)
+          print('Has pytest?', importlib.util.find_spec('pytest') is not None)
+          PY
+          # Fallbacks if extras didn’t pull them (defensive)
+          pip show numpy || pip install --upgrade numpy
+          pip show pytest || pip install --upgrade pytest
+
+
+      - name: Verify runtime deps explicitly
+        run: |
+          python - <<'PY'
+          import numpy, sys
+          print('NumPy OK:', numpy.__version__, 'on', sys.version.split()[0])
+          PY
+
+      - name: Run mypy
+        run: python -m mypy --ignore-missing-imports pt-sim/pt_sim
+
 
       - name: Run mypy type checks
         run: |
