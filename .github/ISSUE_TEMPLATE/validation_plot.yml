@@ -1,0 +1,21 @@
+name: "📈 Validation plot request"
+description: Request a figure for the Validation Report
+labels: ["validation"]
+body:
+  - type: input
+    id: figid
+    attributes:
+      label: Figure ID
+      placeholder: e.g., EM-Longitudinal-η0.0-E50
+  - type: textarea
+    id: recipe
+    attributes:
+      label: Plot recipe
+      description: Command(s) to generate the plot
+      placeholder: |
+        pt-sim validate em --energy 50 --eta 0.0 --out docs/validation/EM-...
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance
+      description: What constitutes “good” (bands, refs)?

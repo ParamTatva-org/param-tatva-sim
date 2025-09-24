@@ -1,0 +1,53 @@
+site_name: ParamTatva Research Center 
+site_description: CERN-grade particle-force simulation & reconstruction grounded in ParamTatva fundamental string
+site_url: https://paramtatva.org/research-center
+repo_url: https://github.com/OWNER/REPO
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - content.code.copy
+    - content.action.edit
+    - toc.integrate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.details
+  - attr_list
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/OWNER/REPO
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Quickstart: getting-started/quickstart.md
+    - Dev Env: getting-started/dev-env.md
+  - Architecture:
+    - Overview: architecture/overview.md
+    - Packages & Layout: architecture/layout.md
+    - Data & IOV: architecture/conditions-iov.md
+  - Physics Notes:
+    - Transport & Steppers: physics-notes/transport.md
+    - EM Showers v1: physics-notes/em-showers.md
+    - Materials & dE_dx: physics-notes/materials.md
+  - Weeks 1–3 (Sprint A):
+    - Week 1: sprints/week-01.md
+    - Week 2: sprints/week-02.md
+    - Week 3: sprints/week-03.md
+  - Validation:
+    - Plan & Metrics: validation/plan.md
+    - Figures: validation/figures.md
+  - Contributing:
+    - Guidelines: contributing/guidelines.md
+    - Code of Conduct: contributing/code-of-conduct.md

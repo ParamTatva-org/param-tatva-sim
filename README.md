@@ -9,6 +9,11 @@
 
 ---
 
+[![Docs](https://img.shields.io/badge/docs-mkdocs--material-blue)](https://docs.paramtatva.org)
+[![Tests](https://github.com/ParamTatva-org/param-tatva-sim/actions/workflows/tests.yml/badge.svg)](https://github.com/ParamTatva-org/param-tatva-sim/actions/workflows/tests.yml)
+
+
+
 ## ✨ What’s inside
 
 * **Detector simulator**

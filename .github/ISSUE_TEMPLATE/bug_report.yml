@@ -1,0 +1,54 @@
+name: "🐛 Bug report"
+description: Report a problem that breaks expected behavior
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for filing a bug! Please fill in the details below."
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened, and what did you expect?
+      placeholder: Clear, concise description...
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: Steps (commands/config) to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / Traceback
+      description: Paste relevant logs or errors
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Version info
+      description: git SHA (and pip pkg versions if relevant)
+      placeholder: e.g., 1a2b3c4 (pt-sim 0.2.0)
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - core/stepper
+        - physics/shower
+        - detector/digitization
+        - forces/fields
+        - io/root/hepmc
+        - geom/gdml
+        - reco/acts
+        - ml/surrogates
+        - orchestration
+        - docs

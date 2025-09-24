@@ -1,0 +1,47 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e pt-sim
+          pip install pytest ruff mypy mkdocs mkdocs-material
+
+      - name: Lint
+        run: |
+          ruff pt-sim
+          mypy pt-sim
+
+      - name: Run unit + physics tests
+        run: pytest -q
+
+      - name: Run toy demo (electron → ECAL)
+        run: |
+          mkdir -p out
+          python -m pt_sim.demo_electron_ecal configs/demo_electron.yaml out
+
+      - name: Upload demo artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-output
+          path: out/
