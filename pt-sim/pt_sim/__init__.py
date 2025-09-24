@@ -1,3 +1,8 @@
-__version__='0.2.0'
+__version__ = "0.2.0"
 
-from . import physics, forces, io  # re-export namespaces
+# Explicit re-exports so Ruff treats them as used
+from . import physics as physics  # re-export
+from . import forces as forces    # re-export
+from . import io as io            # re-export
+
+__all__ = ["physics", "forces", "io", "__version__"]
