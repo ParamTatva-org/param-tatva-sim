@@ -23,7 +23,7 @@ def _get(cfg: Mapping[str, Any], path: Sequence[str], default: T) -> T:
         # Guard: if structure diverges or key missing, return default
         if not isinstance(cur, Mapping) or k not in cur:
             return default
-        cur = cur[k]  # type: ignore[index]
+        cur = cur[k]
     # We’ve walked a Mapping; cast to requested type variable for callers
     return cast(T, cur)
 

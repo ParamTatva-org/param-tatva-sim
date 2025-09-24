@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "param-tatva-sim"
+version = "0.1.0"
+description = "Param Tatva simulator (particles, fields, detectors)"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "ParamTatva.org" }]
+license = { text = "MIT" }
+# Runtime deps your code imports at run/test time
+dependencies = [
+  "numpy>=1.23",
+  "matplotlib>=3.7",
+  "scipy>=1.10"
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=7",
+  "pytest-cov>=4",
+  "mypy>=1.5",
+   "types-PyYAML>=6.0.12.20240808",
+  # add any others your tests import:
+  # "pydantic", "networkx", ...
+]
+
+# Tell setuptools where to find your package (pt_sim under pt-sim/)
+[tool.setuptools.packages.find]
+where = ["pt-sim"]
+include = ["pt_sim*"]
+
+# If you ship non-.py data inside pt_sim, uncomment and adjust:
+# [tool.setuptools.package-data]
+# "pt_sim" = ["data/**/*"]
+
+# Optional: mypy config co-located in pyproject
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+strict_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true

@@ -69,10 +69,19 @@ def demo_flux_tube(outdir: Pathish) -> str:
     X, Y, E = flux_tube_map(n=160, sep=10.0, width=1.5)
 
     plt.figure()
-    plt.imshow(
+    """ plt.imshow(
         E,
         origin="lower",
         extent=[X.min(), X.max(), Y.min(), Y.max()],
+        interpolation="bilinear",
+    ) """
+    extent: tuple[float, float, float, float] = (
+        float(X.min()), float(X.max()), float(Y.min()), float(Y.max())
+    )
+    plt.imshow(
+        E,
+        origin="lower",
+        extent=extent,
         interpolation="bilinear",
     )
     plt.colorbar(label="Normalized energy density")

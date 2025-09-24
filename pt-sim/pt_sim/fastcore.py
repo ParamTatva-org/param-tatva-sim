@@ -3,7 +3,7 @@ Fast-path wrappers. Prefer Rust (pt_core_py) if available, else Python fallback.
 """
 
 try:
-    import pt_core_py as _rc  # type: ignore[import-not-found]
+    import pt_core_py as _rc
     HAVE_RUST = True
 except Exception:
     _rc = None
