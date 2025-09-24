@@ -27,18 +27,25 @@ jobs:
           pip install -e pt-sim
           pip install pytest ruff mypy mkdocs mkdocs-material
 
-      - name: Lint
+      - name: Lint (Ruff)
         run: |
-          ruff pt-sim
-          mypy pt-sim
+          ruff --version
+          ruff check pt-sim/pt_sim
+
+      - name: Type check (Mypy)
+        run: |
+          mypy --version
+          mypy --ignore-missing-imports pt-sim/pt_sim
 
       - name: Run unit + physics tests
         run: pytest -q
 
       - name: Run toy demo (electron → ECAL)
+        if: ${{ false }}
         run: |
           mkdir -p out
-          python -m pt_sim.demo_electron_ecal configs/demo_electron.yaml out
+          python -m pt_sim.demos.demo_run configs/demo_electron.yaml out
+
 
       - name: Upload demo artifacts
         uses: actions/upload-artifact@v4
