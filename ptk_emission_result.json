@@ -1,0 +1,25 @@
+{
+  "particles": [
+    {
+      "id": "e7c21b6b-5613-4eee-a5f9-8e5b42af470f",
+      "locus": "n1",
+      "energy": 23.619600000000002,
+      "mass2": 27.398736000000007,
+      "Q": {
+        "line": 1.0,
+        "pos": 1.0,
+        "vowel_bias": 0.0
+      }
+    }
+  ],
+  "fields": [],
+  "detections": [
+    {
+      "id": "571f5d07-f286-4a3f-9231-6ddb5a206431",
+      "kind": "particle",
+      "ref_id": "e7c21b6b-5613-4eee-a5f9-8e5b42af470f",
+      "confidence": 0.96
+    }
+  ],
+  "steps": 50
+}

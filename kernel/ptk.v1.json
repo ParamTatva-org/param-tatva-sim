@@ -1,0 +1,2376 @@
+{
+  "ptk_version": "1.0",
+  "universe": "maheshwara-sutras",
+  "meta": {
+    "encoding": "unicode",
+    "transliteration": "IAST",
+    "created": "2025-09-24"
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "label": "a",
+      "sanskrit": "अ",
+      "line": 1,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n2",
+      "label": "i",
+      "sanskrit": "इ",
+      "line": 1,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n3",
+      "label": "u",
+      "sanskrit": "उ",
+      "line": 1,
+      "pos": 3,
+      "features": []
+    },
+    {
+      "id": "n4",
+      "label": "Ṇ",
+      "sanskrit": "ण्",
+      "line": 1,
+      "pos": 4,
+      "features": []
+    },
+    {
+      "id": "n5",
+      "label": "ṛ",
+      "sanskrit": "ऋ",
+      "line": 2,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n6",
+      "label": "ḷ",
+      "sanskrit": "ऌ",
+      "line": 2,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n7",
+      "label": "K",
+      "sanskrit": "क्",
+      "line": 2,
+      "pos": 3,
+      "features": []
+    },
+    {
+      "id": "n8",
+      "label": "e",
+      "sanskrit": "ए",
+      "line": 3,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n9",
+      "label": "o",
+      "sanskrit": "ओ",
+      "line": 3,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n10",
+      "label": "Ṅ",
+      "sanskrit": "ङ्",
+      "line": 3,
+      "pos": 3,
+      "features": []
+    },
+    {
+      "id": "n11",
+      "label": "ai",
+      "sanskrit": "ऐ",
+      "line": 4,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n12",
+      "label": "au",
+      "sanskrit": "औ",
+      "line": 4,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n13",
+      "label": "C",
+      "sanskrit": "च्",
+      "line": 4,
+      "pos": 3,
+      "features": []
+    },
+    {
+      "id": "n14",
+      "label": "ha",
+      "sanskrit": "ह",
+      "line": 5,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n15",
+      "label": "ya",
+      "sanskrit": "य",
+      "line": 5,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n16",
+      "label": "va",
+      "sanskrit": "व",
+      "line": 5,
+      "pos": 3,
+      "features": []
+    },
+    {
+      "id": "n17",
+      "label": "ra",
+      "sanskrit": "र",
+      "line": 5,
+      "pos": 4,
+      "features": []
+    },
+    {
+      "id": "n18",
+      "label": "Ṭ",
+      "sanskrit": "ट्",
+      "line": 5,
+      "pos": 5,
+      "features": []
+    },
+    {
+      "id": "n19",
+      "label": "la",
+      "sanskrit": "ल",
+      "line": 6,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n20",
+      "label": "Ṇ",
+      "sanskrit": "ण्",
+      "line": 6,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n21",
+      "label": "ña",
+      "sanskrit": "ञ",
+      "line": 7,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n22",
+      "label": "ma",
+      "sanskrit": "म",
+      "line": 7,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n23",
+      "label": "ṅa",
+      "sanskrit": "ङ",
+      "line": 7,
+      "pos": 3,
+      "features": []
+    },
+    {
+      "id": "n24",
+      "label": "ṇa",
+      "sanskrit": "ण",
+      "line": 7,
+      "pos": 4,
+      "features": []
+    },
+    {
+      "id": "n25",
+      "label": "na",
+      "sanskrit": "न",
+      "line": 7,
+      "pos": 5,
+      "features": []
+    },
+    {
+      "id": "n26",
+      "label": "M",
+      "sanskrit": "म्",
+      "line": 7,
+      "pos": 6,
+      "features": []
+    },
+    {
+      "id": "n27",
+      "label": "jha",
+      "sanskrit": "झ",
+      "line": 8,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n28",
+      "label": "bha",
+      "sanskrit": "भ",
+      "line": 8,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n29",
+      "label": "Ñ",
+      "sanskrit": "ञ्",
+      "line": 8,
+      "pos": 3,
+      "features": []
+    },
+    {
+      "id": "n30",
+      "label": "gha",
+      "sanskrit": "घ",
+      "line": 9,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n31",
+      "label": "ḍha",
+      "sanskrit": "ढ",
+      "line": 9,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n32",
+      "label": "dha",
+      "sanskrit": "ध",
+      "line": 9,
+      "pos": 3,
+      "features": []
+    },
+    {
+      "id": "n33",
+      "label": "Ṣ",
+      "sanskrit": "ष्",
+      "line": 9,
+      "pos": 4,
+      "features": []
+    },
+    {
+      "id": "n34",
+      "label": "ja",
+      "sanskrit": "ज",
+      "line": 10,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n35",
+      "label": "ba",
+      "sanskrit": "ब",
+      "line": 10,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n36",
+      "label": "ga",
+      "sanskrit": "ग",
+      "line": 10,
+      "pos": 3,
+      "features": []
+    },
+    {
+      "id": "n37",
+      "label": "ḍa",
+      "sanskrit": "ड",
+      "line": 10,
+      "pos": 4,
+      "features": []
+    },
+    {
+      "id": "n38",
+      "label": "da",
+      "sanskrit": "द",
+      "line": 10,
+      "pos": 5,
+      "features": []
+    },
+    {
+      "id": "n39",
+      "label": "Ś",
+      "sanskrit": "श्",
+      "line": 10,
+      "pos": 6,
+      "features": []
+    },
+    {
+      "id": "n40",
+      "label": "kha",
+      "sanskrit": "ख",
+      "line": 11,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n41",
+      "label": "pha",
+      "sanskrit": "फ",
+      "line": 11,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n42",
+      "label": "cha",
+      "sanskrit": "छ",
+      "line": 11,
+      "pos": 3,
+      "features": []
+    },
+    {
+      "id": "n43",
+      "label": "ṭha",
+      "sanskrit": "ठ",
+      "line": 11,
+      "pos": 4,
+      "features": []
+    },
+    {
+      "id": "n44",
+      "label": "tha",
+      "sanskrit": "थ",
+      "line": 11,
+      "pos": 5,
+      "features": []
+    },
+    {
+      "id": "n45",
+      "label": "ca",
+      "sanskrit": "च",
+      "line": 11,
+      "pos": 6,
+      "features": []
+    },
+    {
+      "id": "n46",
+      "label": "ṭa",
+      "sanskrit": "ट",
+      "line": 11,
+      "pos": 7,
+      "features": []
+    },
+    {
+      "id": "n47",
+      "label": "ta",
+      "sanskrit": "त",
+      "line": 11,
+      "pos": 8,
+      "features": []
+    },
+    {
+      "id": "n48",
+      "label": "V",
+      "sanskrit": "व्",
+      "line": 11,
+      "pos": 9,
+      "features": []
+    },
+    {
+      "id": "n49",
+      "label": "ka",
+      "sanskrit": "क",
+      "line": 12,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n50",
+      "label": "pa",
+      "sanskrit": "प",
+      "line": 12,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n51",
+      "label": "Y",
+      "sanskrit": "य्",
+      "line": 12,
+      "pos": 3,
+      "features": []
+    },
+    {
+      "id": "n52",
+      "label": "śa",
+      "sanskrit": "श",
+      "line": 13,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n53",
+      "label": "ṣa",
+      "sanskrit": "ष",
+      "line": 13,
+      "pos": 2,
+      "features": []
+    },
+    {
+      "id": "n54",
+      "label": "sa",
+      "sanskrit": "स",
+      "line": 13,
+      "pos": 3,
+      "features": []
+    },
+    {
+      "id": "n55",
+      "label": "R",
+      "sanskrit": "र्",
+      "line": 13,
+      "pos": 4,
+      "features": []
+    },
+    {
+      "id": "n56",
+      "label": "ha",
+      "sanskrit": "ह",
+      "line": 14,
+      "pos": 1,
+      "features": []
+    },
+    {
+      "id": "n57",
+      "label": "L",
+      "sanskrit": "ळ",
+      "line": 14,
+      "pos": 2,
+      "features": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "n1",
+      "target": "n2",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e2",
+      "source": "n2",
+      "target": "n3",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e3",
+      "source": "n3",
+      "target": "n4",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e4",
+      "source": "n4",
+      "target": "n3",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e5",
+      "source": "n3",
+      "target": "n2",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e6",
+      "source": "n2",
+      "target": "n1",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e7",
+      "source": "n5",
+      "target": "n6",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e8",
+      "source": "n6",
+      "target": "n7",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e9",
+      "source": "n7",
+      "target": "n6",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e10",
+      "source": "n6",
+      "target": "n5",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e11",
+      "source": "n8",
+      "target": "n9",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e12",
+      "source": "n9",
+      "target": "n10",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e13",
+      "source": "n10",
+      "target": "n9",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e14",
+      "source": "n9",
+      "target": "n8",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e15",
+      "source": "n11",
+      "target": "n12",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e16",
+      "source": "n12",
+      "target": "n13",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e17",
+      "source": "n13",
+      "target": "n12",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e18",
+      "source": "n12",
+      "target": "n11",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e19",
+      "source": "n14",
+      "target": "n15",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e20",
+      "source": "n15",
+      "target": "n16",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e21",
+      "source": "n16",
+      "target": "n17",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e22",
+      "source": "n17",
+      "target": "n18",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e23",
+      "source": "n18",
+      "target": "n17",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e24",
+      "source": "n17",
+      "target": "n16",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e25",
+      "source": "n16",
+      "target": "n15",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e26",
+      "source": "n15",
+      "target": "n14",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e27",
+      "source": "n19",
+      "target": "n20",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e28",
+      "source": "n20",
+      "target": "n19",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e29",
+      "source": "n21",
+      "target": "n22",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e30",
+      "source": "n22",
+      "target": "n23",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e31",
+      "source": "n23",
+      "target": "n24",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e32",
+      "source": "n24",
+      "target": "n25",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e33",
+      "source": "n25",
+      "target": "n26",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e34",
+      "source": "n26",
+      "target": "n25",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e35",
+      "source": "n25",
+      "target": "n24",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e36",
+      "source": "n24",
+      "target": "n23",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e37",
+      "source": "n23",
+      "target": "n22",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e38",
+      "source": "n22",
+      "target": "n21",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e39",
+      "source": "n27",
+      "target": "n28",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e40",
+      "source": "n28",
+      "target": "n29",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e41",
+      "source": "n29",
+      "target": "n28",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e42",
+      "source": "n28",
+      "target": "n27",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e43",
+      "source": "n30",
+      "target": "n31",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e44",
+      "source": "n31",
+      "target": "n32",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e45",
+      "source": "n32",
+      "target": "n33",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e46",
+      "source": "n33",
+      "target": "n32",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e47",
+      "source": "n32",
+      "target": "n31",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e48",
+      "source": "n31",
+      "target": "n30",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e49",
+      "source": "n34",
+      "target": "n35",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e50",
+      "source": "n35",
+      "target": "n36",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e51",
+      "source": "n36",
+      "target": "n37",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e52",
+      "source": "n37",
+      "target": "n38",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e53",
+      "source": "n38",
+      "target": "n39",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e54",
+      "source": "n39",
+      "target": "n38",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e55",
+      "source": "n38",
+      "target": "n37",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e56",
+      "source": "n37",
+      "target": "n36",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e57",
+      "source": "n36",
+      "target": "n35",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e58",
+      "source": "n35",
+      "target": "n34",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e59",
+      "source": "n40",
+      "target": "n41",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e60",
+      "source": "n41",
+      "target": "n42",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e61",
+      "source": "n42",
+      "target": "n43",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e62",
+      "source": "n43",
+      "target": "n44",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e63",
+      "source": "n44",
+      "target": "n45",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e64",
+      "source": "n45",
+      "target": "n46",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e65",
+      "source": "n46",
+      "target": "n47",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e66",
+      "source": "n47",
+      "target": "n48",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e67",
+      "source": "n48",
+      "target": "n47",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e68",
+      "source": "n47",
+      "target": "n46",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e69",
+      "source": "n46",
+      "target": "n45",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e70",
+      "source": "n45",
+      "target": "n44",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e71",
+      "source": "n44",
+      "target": "n43",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e72",
+      "source": "n43",
+      "target": "n42",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e73",
+      "source": "n42",
+      "target": "n41",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e74",
+      "source": "n41",
+      "target": "n40",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e75",
+      "source": "n49",
+      "target": "n50",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e76",
+      "source": "n50",
+      "target": "n51",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e77",
+      "source": "n51",
+      "target": "n50",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e78",
+      "source": "n50",
+      "target": "n49",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e79",
+      "source": "n52",
+      "target": "n53",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e80",
+      "source": "n53",
+      "target": "n54",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e81",
+      "source": "n54",
+      "target": "n55",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e82",
+      "source": "n55",
+      "target": "n54",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e83",
+      "source": "n54",
+      "target": "n53",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e84",
+      "source": "n53",
+      "target": "n52",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e85",
+      "source": "n56",
+      "target": "n57",
+      "type": "within_line",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e86",
+      "source": "n57",
+      "target": "n56",
+      "type": "within_line",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          6,
+          6
+        ],
+        "speed": 1.0,
+        "weight": 1.8
+      }
+    },
+    {
+      "id": "e87",
+      "source": "n4",
+      "target": "n24",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e88",
+      "source": "n24",
+      "target": "n4",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e89",
+      "source": "n7",
+      "target": "n49",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e90",
+      "source": "n49",
+      "target": "n7",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e91",
+      "source": "n10",
+      "target": "n23",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e92",
+      "source": "n23",
+      "target": "n10",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e93",
+      "source": "n13",
+      "target": "n45",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e94",
+      "source": "n45",
+      "target": "n13",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e95",
+      "source": "n18",
+      "target": "n46",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e96",
+      "source": "n46",
+      "target": "n18",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e97",
+      "source": "n20",
+      "target": "n24",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e98",
+      "source": "n24",
+      "target": "n20",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e99",
+      "source": "n26",
+      "target": "n22",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e100",
+      "source": "n22",
+      "target": "n26",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e101",
+      "source": "n29",
+      "target": "n21",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e102",
+      "source": "n21",
+      "target": "n29",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e103",
+      "source": "n33",
+      "target": "n53",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e104",
+      "source": "n53",
+      "target": "n33",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e105",
+      "source": "n39",
+      "target": "n52",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e106",
+      "source": "n52",
+      "target": "n39",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e107",
+      "source": "n48",
+      "target": "n16",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e108",
+      "source": "n16",
+      "target": "n48",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e109",
+      "source": "n51",
+      "target": "n15",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e110",
+      "source": "n15",
+      "target": "n51",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e111",
+      "source": "n55",
+      "target": "n17",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e112",
+      "source": "n17",
+      "target": "n55",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e113",
+      "source": "n57",
+      "target": "n19",
+      "type": "cross_sutra",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e114",
+      "source": "n19",
+      "target": "n57",
+      "type": "cross_sutra",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          2,
+          8
+        ],
+        "speed": 1.3,
+        "weight": 1.5
+      }
+    },
+    {
+      "id": "e115",
+      "source": "n14",
+      "target": "n56",
+      "type": "special",
+      "polarity": 1,
+      "flow": {
+        "dash": [
+          10,
+          6
+        ],
+        "speed": 1.6,
+        "weight": 3.0
+      }
+    },
+    {
+      "id": "e116",
+      "source": "n56",
+      "target": "n14",
+      "type": "special",
+      "polarity": -1,
+      "flow": {
+        "dash": [
+          10,
+          6
+        ],
+        "speed": 1.6,
+        "weight": 3.0
+      }
+    }
+  ],
+  "groups": [
+    {
+      "name": "line",
+      "key": 1,
+      "node_ids": [
+        "n1",
+        "n2",
+        "n3",
+        "n4"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 2,
+      "node_ids": [
+        "n5",
+        "n6",
+        "n7"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 3,
+      "node_ids": [
+        "n8",
+        "n9",
+        "n10"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 4,
+      "node_ids": [
+        "n11",
+        "n12",
+        "n13"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 5,
+      "node_ids": [
+        "n14",
+        "n15",
+        "n16",
+        "n17",
+        "n18"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 6,
+      "node_ids": [
+        "n19",
+        "n20"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 7,
+      "node_ids": [
+        "n21",
+        "n22",
+        "n23",
+        "n24",
+        "n25",
+        "n26"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 8,
+      "node_ids": [
+        "n27",
+        "n28",
+        "n29"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 9,
+      "node_ids": [
+        "n30",
+        "n31",
+        "n32",
+        "n33"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 10,
+      "node_ids": [
+        "n34",
+        "n35",
+        "n36",
+        "n37",
+        "n38",
+        "n39"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 11,
+      "node_ids": [
+        "n40",
+        "n41",
+        "n42",
+        "n43",
+        "n44",
+        "n45",
+        "n46",
+        "n47",
+        "n48"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 12,
+      "node_ids": [
+        "n49",
+        "n50",
+        "n51"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 13,
+      "node_ids": [
+        "n52",
+        "n53",
+        "n54",
+        "n55"
+      ]
+    },
+    {
+      "name": "line",
+      "key": 14,
+      "node_ids": [
+        "n56",
+        "n57"
+      ]
+    }
+  ],
+  "render_hints": {
+    "layout": "rows_by_line",
+    "edge_styles": {
+      "within_line": {
+        "dash": [
+          6,
+          6
+        ]
+      },
+      "cross_sutra": {
+        "dash": [
+          2,
+          8
+        ]
+      },
+      "special": {
+        "dash": [
+          10,
+          6
+        ],
+        "weight": 3
+      }
+    }
+  }
+}
