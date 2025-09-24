@@ -14,7 +14,8 @@ def test_uniformB_speed_conservation():
     dt = 0.01; steps = 500
     xs, vs = integrate_motion_boris(p, uniform_zero_E, uniform_Bz(1.0), x0, v0, dt, steps)
     speeds = np.linalg.norm(vs, axis=1)
-    assert speeds.ptp() < 1e-3  # tiny variation
+    #assert speeds.ptp() < 1e-3  # tiny variation
+    assert np.ptp(speeds) < 1e-3 
 
 def test_uniformB_helix_radius():
     p = Particle(q=2.0, m=1.0)
