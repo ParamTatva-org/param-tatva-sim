@@ -60,3 +60,6 @@ jobs:
         with:
           name: demo-output
           path: out/
+          overwrite: true       
+          if-no-files-found: warn
+          compression-level: 6
