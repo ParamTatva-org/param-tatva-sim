@@ -1,4 +1,5 @@
-import json, numpy as np
+import json
+import numpy as np
 from .bridge import kernel_to_ecal_image
 from ..io.rootio import write_event_npz
 

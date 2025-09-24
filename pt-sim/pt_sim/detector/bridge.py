@@ -1,6 +1,6 @@
 import numpy as np
 from typing import Dict, Any, List
-from ..physics.simplified import longitudinal_profile, lateral_template
+#from ..physics.simplified import longitudinal_profile, lateral_template
 
 def kernel_to_ecal_image(emission: Dict[str, Any], n: int = 32, E_scale: float = 1.0):
     """Very first bridge: convert particles + fields to an ECAL-like 2D energy image."""
