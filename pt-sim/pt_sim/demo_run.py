@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 import numpy as np
+from typing import Any, Mapping, Sequence, TypeVar, cast
 import matplotlib.pyplot as plt
 
 from .physics.simplified import (
@@ -14,18 +15,22 @@ from .physics.accurate import (
 )
 from .paramsutra import load
 
+T = TypeVar("T")
 
-def _get(cfg: dict, path: list[str], default):
-    cur = cfg
+def _get(cfg: Mapping[str, Any], path: Sequence[str], default: T) -> T:
+    cur: Any = cfg
     for k in path:
-        if not isinstance(cur, dict) or k not in cur:
+        # Guard: if structure diverges or key missing, return default
+        if not isinstance(cur, Mapping) or k not in cur:
             return default
-        cur = cur[k]
-    return cur
+        cur = cur[k]  # type: ignore[index]
+    # We’ve walked a Mapping; cast to requested type variable for callers
+    return cast(T, cur)
 
 
 def run(config_path: str, outdir: str) -> str:
-    cfg = load(config_path)
+    
+    cfg = load(config_path)  # TypedDict[Config], still a Mapping for _get
     out = Path(outdir)
     out.mkdir(parents=True, exist_ok=True)
 
