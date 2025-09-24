@@ -28,7 +28,14 @@ jobs:
 
       - name: Install package with test deps
         run: |
-          pip install -e .[test]
+          python -m pip install --upgrade pip
+          # Quote extras to avoid shell globbing: .[test] → '.[test]'
+          pip install -e '.[test]'
+          # Sanity checks so we fail early with a clear error
+          python -c "import sys; print('Python:', sys.version)"
+          python -c "import pkgutil; print('Has numpy?', pkgutil.find_loader('numpy') is not None)"
+          # Fallback in case extras didn’t pull numpy (defensive only)
+          pip show numpy || pip install numpy
 
       - name: Run mypy type checks
         run: |
@@ -36,4 +43,5 @@ jobs:
 
       - name: Run pytest
         run: |
+          python -c "import numpy, sys; print('NumPy:', numpy.__version__, 'on', sys.version.split()[0])"
           pytest -q
