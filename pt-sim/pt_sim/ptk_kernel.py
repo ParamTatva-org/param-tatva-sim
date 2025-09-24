@@ -1,5 +1,5 @@
-# ruff: noqa: E501
-# ruff: noqa: E701
+from __future__ import annotations
+
 # Write a robust, reference Python kernel for "sound emission" interactions over PTK.
 # It will:
 # - Load PTK v1 JSON
@@ -9,11 +9,27 @@
 # - Emit particles and fields from residual energies (can produce multiple outputs)
 # - Return a structured result JSON for study (generation + detection stubs)
 
+
 import json
 import math
 import uuid
 from dataclasses import dataclass, asdict
 from typing import List, Dict, Optional, Any
+from typing import Union, Tuple
+
+
+
+
+from collections import defaultdict
+from typing import DefaultDict, Dict, List, Tuple, TypeAlias, Any
+
+
+
+NodeId: TypeAlias = str          # node ids are "n1", "n4", ...
+Polarity: TypeAlias = int         # +1 or -1
+EdgeKey: TypeAlias = Tuple[NodeId, Polarity]
+Edge:    TypeAlias = Dict[str, Any]
+
 
 ptk_path = "ptk.v1.json"
 
@@ -73,17 +89,44 @@ class DetectionEvent:
 class PTKKernel:
     def __init__(self, ptk: Dict[str, Any]):
         self.ptk = ptk
-        self.nodes = {n["id"]: n for n in ptk["nodes"]}
-        self.out_edges = {}
-        self.in_edges = {}
+
+        self.nodes: Dict[NodeId, Dict[str, Any]] = {n["id"]: n for n in ptk["nodes"]}
+
+
+        # keyed by (node_id, polarity)
+        self.out_edges: DefaultDict[EdgeKey, List[Edge]] = defaultdict(list)
+        self.in_edges:  DefaultDict[EdgeKey, List[Edge]] = defaultdict(list)
+
+        # build adjacency
         for e in ptk["edges"]:
-            self.out_edges.setdefault((e["source"], e["polarity"]), []).append(e)
-            self.in_edges.setdefault((e["target"], e["polarity"]), []).append(e)
-        self.edge_index = {e["id"]: e for e in ptk["edges"]}
-        # Build adjacency by node, polarity
-        self.next_edges = {}
+            src: NodeId = e["source"]
+            tgt: NodeId = e["target"]
+            pol: Polarity = int(e["polarity"])
+            self.out_edges.setdefault((src, pol), []).append(e)
+            self.in_edges.setdefault((tgt, pol), []).append(e)
+
+
+
+        self.edge_index: Dict[str, Edge] = {e["id"]: e for e in ptk["edges"]}
+
+        # direct alias; if you prefer, keep a separate dict with the same type
+        self.next_edges: Dict[EdgeKey, List[Edge]] = dict(self.out_edges)
+
         for (src, pol), arr in self.out_edges.items():
             self.next_edges[(src, pol)] = arr
+
+    @staticmethod
+    def edge_key(node_id: Union[str, object], polarity: Union[int, float, object]) -> EdgeKey:
+        # coerce node_id to str and polarity to canonical ±1 ints (or just int(polarity) if you prefer)
+        nid = str(node_id)
+        if isinstance(polarity, float):
+            pol_i = 1 if polarity >= 0 else -1
+        elif isinstance(polarity, int):
+            pol_i = 1 if polarity >= 0 else -1
+        else:
+            # fall back if something weird sneaks in
+            pol_i = 1
+        return (nid, pol_i)
 
     def _edge_gain(self, e):
         typ = e["type"]
@@ -182,7 +225,7 @@ class PTKKernel:
                     P.sort(key=lambda x: x[3])
                     N.sort(key=lambda x: x[3])
                     i=j=0
-                    set([edge_id])
+                    
                     E_field_accum = 0.0
                     while i < len(P) and j < len(N):
                         p, n = P[i], N[j]
@@ -218,7 +261,9 @@ class PTKKernel:
                         new_packets.append(pk)
                     else:
                         # reached end: split to outgoing edges from target
-                        outs = self.next_edges.get((e["target"], pol), [])
+                        #outs = self.next_edges.get((e["target"], pol), [])
+                        outs = self.next_edges.get(self.edge_key(e["target"], pol), [])
+
                         if not outs:
                             # localize energy at node; possible particle
                             if E >= cfg.particle_E_thresh and coh >= cfg.coherence_thresh:
