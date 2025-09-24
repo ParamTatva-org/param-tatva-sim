@@ -305,6 +305,11 @@ Every state exists in equilibrium. Equilibrium is the primary rule of the univer
 
 ---
 
+# Generation of particles and forces.
+The positive and negative flows of Param Tatva act as the architectural kernel. It preserves the order of sound, the connections and flow of energy. All the particles and force generations shall happen through interaction of positive and negative halves together.
+
+
+
 ## Full Sequence (Flowchart with Dual Continuation)
 
 ```mermaid
