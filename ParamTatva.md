@@ -46,6 +46,8 @@ According to the system:
 
 ---
 
+
+
 ```mermaid
 graph LR
   %% --- Line 1 ---
@@ -282,6 +284,10 @@ mindmap
       l (→ END, and → 6‑1 la)
 ````
 
+
+# Directionality of Param Tatva Halves
+
+## The positive half of param tatva  - Energy moves from the left to right (in Maheshwar Sutra Order)
 
 ```mermaid
 %%{init: {
