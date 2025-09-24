@@ -1,11 +1,14 @@
 from pathlib import Path
 import numpy as np
 
+
 def write_event_npz(path, arrays: dict):
     """Safe default: writes numpy .npz file so tests pass without ROOT."""
-    path = Path(path); path.parent.mkdir(parents=True, exist_ok=True)
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(path, **arrays)
     return str(path)
+
 
 def available():
     """Return a tiny capability struct; extend when ROOT/uproot present."""
