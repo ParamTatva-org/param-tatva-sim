@@ -1,3 +1,5 @@
+# ruff: noqa: E501
+# ruff: noqa: E701
 from __future__ import annotations
 
 # Write a robust, reference Python kernel for "sound emission" interactions over PTK.

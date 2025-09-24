@@ -22,6 +22,3 @@ test = [
   "scipy>=1.10",
 ]
 
-
-[tool.ruff.lint]
-ignore = ["E701","E501"]
