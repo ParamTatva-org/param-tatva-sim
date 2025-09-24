@@ -1,12 +1,12 @@
 {
   "root": "/Users/prabhatsingh/param-tatva-sim",
-  "generated_at_utc": "2025-09-23T22:07:29.001663Z",
+  "generated_at_utc": "2025-09-23T23:12:09.720579Z",
   "files": [
     {
       "path": "pt-sim/pt_sim/__init__.py",
-      "size": 20,
-      "content": "__version__='0.1.0'\n",
-      "sha256": "9cc673adaf1d8d3576b3a2ac97485ac5ec193cbc9947be6bb526c2ecaf68d51d"
+      "size": 79,
+      "content": "__version__='0.2.0'\n\nfrom . import physics, forces, io  # re-export namespaces\n",
+      "sha256": "fb75fc666d8761fbee69fd2b7b4c1cc478ab43cc027da88b0097a164c3e886b8"
     },
     {
       "path": "pt-sim/pt_sim/demo_forces.py",
@@ -25,6 +25,18 @@
       "size": 738,
       "content": "\n\"\"\"Thin wrapper that prefers Rust-accelerated functions when available.\n\nBuild the Python extension from pt-core with:\n  cd pt-core\n  cargo build --release --features python\n\nThen expose the built library to Python as `pt_core_py` (adjust PYTHONPATH/LD_LIBRARY_PATH\nor copy the built .so/.pyd next to this file).\n\"\"\"\nimport math\ntry:\n    import pt_core_py as _rc\n    HAVE_RUST = True\nexcept Exception:\n    _rc = None\n    HAVE_RUST = False\n\ndef kk_winding_mass2(m1,m2,w1,w2,r1,r2,alpha_prime):\n    if HAVE_RUST:\n        return float(_rc.kk_winding_mass2_py(int(m1),int(m2),int(w1),int(w2), float(r1),float(r2),float(alpha_prime)))\n    # Python fallback\n    return (m1/r1)**2 + (m2/r2)**2 + (w1*r1/alpha_prime)**2 + (w2*r2/alpha_prime)**2\n",
       "sha256": "a51f546b910bec97d01bd1b75eddc7063953cb6e7bbdf75f3b591bdac1c80fef"
+    },
+    {
+      "path": "pt-sim/pt_sim/forces/analytic.py",
+      "size": 278,
+      "content": "import numpy as np\n\ndef helix_radius(v_perp, q_over_m, B_mag):\n    \"\"\"r = v_perp / omega,  omega = |q|B/m = |q_over_m|*B.\"\"\"\n    omega = abs(q_over_m) * abs(B_mag)\n    return abs(v_perp) / max(omega, 1e-16)\n\ndef cyclotron_frequency(q_over_m, B_mag):\n    return q_over_m * B_mag\n",
+      "sha256": "dafa9dbe8cd267c1f95ff871d11e9f6b5358d365a810f3653903fc22a0ffc089"
+    },
+    {
+      "path": "pt-sim/pt_sim/forces/boris.py",
+      "size": 1673,
+      "content": "import numpy as np\nfrom .gauge import Particle\n\ndef boris_step(q_over_m, dt, v, E, B, relativistic=False, c=1.0):\n    \"\"\"\n    Single Boris push.\n    If relativistic=True, uses gamma from v at the beginning of the step.\n    Units: c can be 1.0 (natural units). Keep speeds well below c if non-relativistic.\n    \"\"\"\n    v = np.asarray(v, float); E = np.asarray(E, float); B = np.asarray(B, float)\n    if relativistic:\n        v2 = np.dot(v, v)\n        gamma = 1.0 / np.sqrt(max(1.0 - v2/(c*c), 1e-12))\n    else:\n        gamma = 1.0\n    # Half electric kick\n    v_minus = v + (q_over_m * E) * (dt * 0.5) / gamma\n    # Magnetic rotation\n    t = q_over_m * B * (dt * 0.5) / gamma\n    t2 = np.dot(t, t)\n    v_prime = v_minus + np.cross(v_minus, t)\n    s = 2.0 * t / (1.0 + t2)\n    v_plus = v_minus + np.cross(v_prime, s)\n    # Half electric kick\n    v_new = v_plus + (q_over_m * E) * (dt * 0.5) / gamma\n    return v_new\n\ndef integrate_motion_boris(p: Particle, E_func, B_func, x0, v0, dt, steps, relativistic=False, c=1.0):\n    \"\"\"\n    Integrate trajectory with Boris pusher. E_func(t,x)->E, B_func(t,x)->B.\n    Returns arrays xs, vs (shape [steps,3]).\n    \"\"\"\n    x = np.array(x0, float); v = np.array(v0, float)\n    xs = np.zeros((steps, 3)); vs = np.zeros((steps, 3))\n    q_over_m = p.q / max(p.m, 1e-12)\n    t = 0.0\n    for i in range(steps):\n        E = np.asarray(E_func(t, x), float)\n        B = np.asarray(B_func(t, x), float)\n        # Boris velocity update\n        v = boris_step(q_over_m, dt, v, E, B, relativistic=relativistic, c=c)\n        # Position update (leapfrog consistent)\n        x = x + v * dt\n        xs[i] = x; vs[i] = v\n        t += dt\n    return xs, vs\n",
+      "sha256": "eb57e62f9037e656e392caa0c2abb54d6f1ea4472c28ca8162c67302a50100d3"
     },
     {
       "path": "pt-sim/pt_sim/forces/em.py",
@@ -51,6 +63,18 @@
       "sha256": "aa3a1baad4fbdc45b5a30a36cb1604f1c1c76bb48e5951e6258d8043871e5739"
     },
     {
+      "path": "pt-sim/pt_sim/io/hepmc.py",
+      "size": 508,
+      "content": "from pathlib import Path\n\ndef write_ascii_minimal(path, particles):\n    \"\"\"\n    Very small, HepMC-like ASCII for tests. 'particles' is list of dicts with keys:\n      id, px, py, pz, E, status\n    \"\"\"\n    path = Path(path); path.parent.mkdir(parents=True, exist_ok=True)\n    with open(path, \"w\") as f:\n        f.write(\"# Minimal HepMC-like ASCII (ParamTatva)\\n\")\n        for p in particles:\n            f.write(f\"P {p['id']} {p['px']} {p['py']} {p['pz']} {p['E']} {p.get('status',1)}\\n\")\n    return str(path)\n",
+      "sha256": "678fb130cc9ec611d11a2b4068b1d7358e90857f88fd43ea69948b318e08b232"
+    },
+    {
+      "path": "pt-sim/pt_sim/io/rootio.py",
+      "size": 553,
+      "content": "from pathlib import Path\nimport numpy as np\n\ndef write_event_npz(path, arrays: dict):\n    \"\"\"Safe default: writes numpy .npz file so tests pass without ROOT.\"\"\"\n    path = Path(path); path.parent.mkdir(parents=True, exist_ok=True)\n    np.savez_compressed(path, **arrays)\n    return str(path)\n\ndef available():\n    \"\"\"Return a tiny capability struct; extend when ROOT/uproot present.\"\"\"\n    try:\n        import uproot  # noqa: F401\n        return {\"root\": True, \"backend\": \"uproot\"}\n    except Exception:\n        return {\"root\": False, \"backend\": \"npz\"}\n",
+      "sha256": "0e85594d3f4d5e0d715012edc74f9d6625eef4ba36d93d4b4d5352df35f14bbf"
+    },
+    {
       "path": "pt-sim/pt_sim/paramsutra.py",
       "size": 1263,
       "content": "import yaml\nfrom dataclasses import dataclass\n\n@dataclass\nclass PTGlobal:\n  alpha_prime: float = 1.0\n  intercept: float = 1.0\n\n@dataclass\nclass ElectronTarget:\n  mass_mev: float = 0.511\n  charge: int = -1\n  spin: float = 0.5\n\n@dataclass\nclass ECALGeom:\n  n: int = 32\n  cell_size_cm: float = 1.0\n  moliere_radius_cm: float = 2.0\n  depth_lambda: float = 25.0\n  sampling_fraction: float = 0.9\n  noise_sigma: float = 0.002\n\n@dataclass\nclass ShowerParams:\n  a: float = 4.0\n  b: float = 0.3\n  lateral_sigma_cm: float = 1.2\n\n@dataclass\nclass Config:\n  global_pt: PTGlobal\n  electron: ElectronTarget\n  ecal_geom: ECALGeom\n  shower: ShowerParams\n\n@dataclass\nclass Material:\n  name: str = \"PbWO4\"\n  X0_cm: float = 0.89\n  RM_cm: float = 2.0\n  Ec_MeV: float = 9.0\n  sampling_fraction: float = 0.9\n  light_yield_pe_per_GeV: float = 20000.0\n  electronics_noise_GeV: float = 0.002\n\ndef load(path: str):\n  d = yaml.safe_load(open(path, 'r'))\n  gp = PTGlobal(**d.get('global_pt', {}))\n  el = ElectronTarget(**d.get('electron', {}))\n  eg = ECALGeom(**d.get('ecal_geom', {}))\n  sp = ShowerParams(**d.get('shower', {}))\n  cfg = Config(gp, el, eg, sp)\n  # Attach optional fields\n  cfg.mode = d.get('mode', 'simplified')\n  cfg.material = Material(**d.get('material', {}))\n  return cfg\n",
@@ -67,6 +91,24 @@
       "size": 484,
       "content": "import numpy as np\ndef longitudinal_profile(depth, a, b, total_energy):\n  xs = np.linspace(0, depth.max(), 2048)\n  ys = (xs**(a-1)) * np.exp(-b*xs)\n  norm = np.trapz(ys, xs)\n  return (depth**(a-1)) * np.exp(-b*depth) * (total_energy / norm)\ndef lateral_template(n, sigma_cm, cell_size_cm):\n  idx = np.arange(n) - (n-1)/2\n  X, Y = np.meshgrid(idx, idx, indexing='xy')\n  X = X * cell_size_cm; Y = Y * cell_size_cm\n  G = np.exp(-0.5 * (X**2 + Y**2) / (sigma_cm**2))\n  return G / G.sum()\n",
       "sha256": "1afc0a1a9fe55ed4f0a9599d631b750a438b187c16f43c70d974fd06248fbf7a"
+    },
+    {
+      "path": "tests/test_boris.py",
+      "size": 1159,
+      "content": "import numpy as np\nfrom pt_sim.forces.boris import integrate_motion_boris\nfrom pt_sim.forces.gauge import Particle\nfrom pt_sim.forces.analytic import helix_radius, cyclotron_frequency\n\ndef uniform_zero_E(t, x): return np.array([0.0,0.0,0.0])\ndef uniform_Bz(Bz):\n    def f(t, x): return np.array([0.0,0.0,Bz])\n    return f\n\ndef test_uniformB_speed_conservation():\n    p = Particle(q=1.0, m=1.0)\n    x0 = (0.0,0.0,0.0); v0 = np.array([0.3, 0.0, 0.0])  # keep sub-relativistic\n    dt = 0.01; steps = 500\n    xs, vs = integrate_motion_boris(p, uniform_zero_E, uniform_Bz(1.0), x0, v0, dt, steps)\n    speeds = np.linalg.norm(vs, axis=1)\n    assert speeds.ptp() < 1e-3  # tiny variation\n\ndef test_uniformB_helix_radius():\n    p = Particle(q=2.0, m=1.0)\n    v0 = np.array([0.2, 0.1, 0.0])\n    Bz = 0.7\n    q_over_m = p.q/p.m\n    r_true = helix_radius(np.linalg.norm(v0[:2]), q_over_m, Bz)\n    xs, vs = integrate_motion_boris(p, uniform_zero_E, uniform_Bz(Bz), (0,0,0), v0, dt=0.01, steps=2000)\n    # Estimate radius from xy positions\n    xy = xs[:, :2]\n    rc_est = np.mean(np.linalg.norm(xy - xy.mean(axis=0), axis=1))\n    assert abs(rc_est - r_true)/r_true < 0.05\n",
+      "sha256": "e1ac774b35dc1ff43d88bc61605c400bfaeb07421cdcbb5314fddd8aba2d8541"
+    },
+    {
+      "path": "tests/test_em_shower_energy.py",
+      "size": 642,
+      "content": "import numpy as np\nfrom pt_sim.physics import simplified as ps\nfrom pt_sim.physics import accurate as pa\n\ndef test_energy_closure_simplified():\n    n = 32; E = 5.0\n    depth = np.linspace(0, 20.0, n)\n    longE = ps.longitudinal_profile(depth, 4.0, 0.3, E)\n    lat = ps.lateral_template(n, 1.2, 1.0)\n    e = sum(ei*lat for ei in longE)\n    assert abs(e.sum()-E)/E < 5e-3\n\ndef test_energy_closure_accurate():\n    n = 32; E = 5.0\n    depth = np.linspace(0, 20.0, n)\n    longE = pa.longitudinal_em(depth, E, X0_cm=1.0, Ec_MeV=10.0)\n    lat = pa.lateral_em(n, 1.0, RM_cm=2.0)\n    e = sum(ei*lat for ei in longE)\n    assert abs(e.sum()-E)/E < 5e-3\n",
+      "sha256": "104612b09f89b1858e90a424e662a58b146ba3c3743f6fd0e7e37d0ed551f83c"
+    },
+    {
+      "path": "tests/test_io_stubs.py",
+      "size": 625,
+      "content": "import numpy as np, os\nfrom pt_sim.io.rootio import write_event_npz, available\nfrom pt_sim.io.hepmc import write_ascii_minimal\n\ndef test_npz_writer(tmp_path):\n    out = tmp_path / \"event.npz\"\n    p = np.array([[1,2,3]])\n    path = write_event_npz(out, {\"p\": p})\n    assert os.path.exists(path)\n\ndef test_hepmc_ascii(tmp_path):\n    out = tmp_path / \"event.hepmc.txt\"\n    parts = [{\"id\": 11, \"px\":0.1, \"py\":0.2, \"pz\":1.0, \"E\":1.05, \"status\":1}]\n    path = write_ascii_minimal(out, parts)\n    assert os.path.exists(path)\n\ndef test_available_returns_dict():\n    info = available()\n    assert \"root\" in info and \"backend\" in info\n",
+      "sha256": "816f154f3d50d9b0b6f5c32e9bce7908e649a3aecb487fab953a7894dac51973"
     }
   ]
 }

@@ -5,7 +5,7 @@ version = "0.3.0"
 edition = "2021"
 license = "Apache-2.0"
 description = "Param Tatva core: spectrum, compactification, potentials"
-repository = ""
+repository = "/ParamTatva-org/param-tatva-sim/tree/main"
 
 [lib]
 name = "pt_core"
@@ -30,3 +30,7 @@ harness = false
 
 [package.metadata.pyo3]
 extension-module = true
+
+[profile.release]
+lto = true
+codegen-units = 1
