@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <!-- Colors -->
+    <style>
+      :root {
+        --ink:#111827; --hint:#6b7280; --panel:#ffffff; --border:#e5e7eb;
+        --green:#16a34a; --red:#dc2626; --field:#2563eb; --gold:#f59e0b;
+      }
+      .title{ font:700 28px/1.2 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; fill:var(--ink) }
+      .subtitle{ font:600 16px/1.2 system-ui; fill:var(--hint) }
+      .legend{ font:600 14px/1.2 system-ui; fill:var(--ink) }
+      .panel{ fill:var(--panel); stroke:var(--border); stroke-width:1 }
+      .node text{ font:600 12px/1.2 system-ui; fill:var(--ink) }
+      .node circle{ fill:#fff; stroke:var(--ink); stroke-width:1.1 }
+      .edgeP{ stroke:var(--green); fill:none; stroke-width:2; stroke-dasharray:6 8; animation:flowP 2.4s linear infinite }
+      .edgeN{ stroke:var(--red);   fill:none; stroke-width:2; stroke-dasharray:6 8; animation:flowN 2.4s linear infinite }
+      .field{ stroke:var(--field); fill:none; stroke-width:2; stroke-dasharray:10 10; opacity:.7; animation:wave 3s linear infinite }
+      .star{ fill:var(--gold); stroke:#00000080; stroke-width:.6; animation:twinkle 1.8s ease-in-out infinite }
+      @keyframes flowP { from{stroke-dashoffset:0} to{stroke-dashoffset:-28} }
+      @keyframes flowN { from{stroke-dashoffset:0} to{stroke-dashoffset: 28} }
+      @keyframes wave  { from{stroke-dashoffset:0} to{stroke-dashoffset:-80} }
+      @keyframes twinkle { 0%,100%{opacity:.9; transform:scale(1)} 50%{opacity:1; transform:scale(1.15)} }
+      .tag{ font:700 13px/1.2 system-ui; fill:var(--ink) }
+    </style>
+
+    <!-- Arrowheads -->
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10Z" fill="#16a34a"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10Z" fill="#dc2626"/>
+    </marker>
+
+    <!-- Soft lobes -->
+    <radialGradient id="gradPos" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity=".20"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity=".05"/>
+    </radialGradient>
+    <radialGradient id="gradNeg" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity=".20"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity=".05"/>
+    </radialGradient>
+    <radialGradient id="gradMix" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity=".18"/>
+      <stop offset="100%" stop-color="#60a5fa" stop-opacity=".03"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1280" height="720" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text class="title" x="640" y="60" text-anchor="middle">Param Tatva: Particle &amp; Field Generation from ± Flows</text>
+  <text class="subtitle" x="640" y="88" text-anchor="middle">Positive (green) flows meet Negative (red) flows → localized particles &amp; radiative fields</text>
+
+  <!-- Panels (left/right lobes) -->
+  <rect class="panel" x="60" y="120" width="480" height="420" rx="14"/>
+  <rect class="panel" x="740" y="120" width="480" height="420" rx="14"/>
+
+  <!-- Soft lobes -->
+  <ellipse cx="300" cy="330" rx="210" ry="140" fill="url(#gradPos)"/>
+  <ellipse cx="980" cy="330" rx="210" ry="140" fill="url(#gradNeg)"/>
+  <!-- Interaction zone -->
+  <ellipse cx="640" cy="330" rx="220" ry="150" fill="url(#gradMix)"/>
+
+  <!-- LEFT: Positive lobe (+) -->
+  <g transform="translate(0,0)">
+    <text class="tag" x="300" y="150" text-anchor="middle">Positive Lobe (+)</text>
+    <!-- Nodes -->
+    <g class="node" transform="translate(170,300)"><circle r="16"/><text text-anchor="middle" dy="-22">अ</text><text text-anchor="middle" dy="5">a</text></g>
+    <g class="node" transform="translate(270,300)"><circle r="16"/><text text-anchor="middle" dy="-22">इ</text><text text-anchor="middle" dy="5">i</text></g>
+    <g class="node" transform="translate(370,300)"><circle r="16"/><text text-anchor="middle" dy="-22">उ</text><text text-anchor="middle" dy="5">u</text></g>
+    <g class="node" transform="translate(470,300)"><circle r="16"/><text text-anchor="middle" dy="-22">ह</text><text text-anchor="middle" dy="5">ha</text></g>
+
+    <!-- Positive edges (offset up) -->
+    <path class="edgeP" d="M170 300 C200 270, 240 270, 270 300" marker-end="url(#arrowGreen)"/>
+    <path class="edgeP" d="M270 300 C300 270, 340 270, 370 300" marker-end="url(#arrowGreen)"/>
+    <path class="edgeP" d="M370 300 C400 270, 440 270, 470 300" marker-end="url(#arrowGreen)"/>
+
+    <!-- Cross to interaction -->
+    <path class="edgeP" d="M270 300 C 300 310, 420 330, 540 330" marker-end="url(#arrowGreen)"/>
+  </g>
+
+  <!-- RIGHT: Negative lobe (−) -->
+  <g transform="translate(680,0)">
+    <text class="tag" x="300" y="150" text-anchor="middle">Negative Lobe (−)</text>
+    <!-- Nodes -->
+    <g class="node" transform="translate(470,300)"><circle r="16"/><text text-anchor="middle" dy="-22">अ</text><text text-anchor="middle" dy="5">a</text></g>
+    <g class="node" transform="translate(370,300)"><circle r="16"/><text text-anchor="middle" dy="-22">इ</text><text text-anchor="middle" dy="5">i</text></g>
+    <g class="node" transform="translate(270,300)"><circle r="16"/><text text-anchor="middle" dy="-22">उ</text><text text-anchor="middle" dy="5">u</text></g>
+    <g class="node" transform="translate(170,300)"><circle r="16"/><text text-anchor="middle" dy="-22">ह</text><text text-anchor="middle" dy="5">ha</text></g>
+
+    <!-- Negative edges (offset down) -->
+    <path class="edgeN" d="M470 300 C440 330, 400 330, 370 300" marker-end="url(#arrowRed)"/>
+    <path class="edgeN" d="M370 300 C340 330, 300 330, 270 300" marker-end="url(#arrowRed)"/>
+    <path class="edgeN" d="M270 300 C240 330, 200 330, 170 300" marker-end="url(#arrowRed)"/>
+
+    <!-- Cross to interaction -->
+    <path class="edgeN" d="M270 300 C 240 310, 120 330, -20 330" marker-end="url(#arrowRed)"/>
+  </g>
+
+  <!-- CENTER: Interaction & emissions -->
+  <g>
+    <text class="tag" x="640" y="160" text-anchor="middle">Interaction Zone</text>
+
+    <!-- Incoming guides -->
+    <path class="edgeP" d="M540 330 C 560 300, 600 300, 620 320" marker-end="url(#arrowGreen)"/>
+    <path class="edgeN" d="M740 330 C 720 360, 680 360, 660 340" marker-end="url(#arrowRed)"/>
+
+    <!-- Particle emissions (stars) -->
+    <g transform="translate(620,320) rotate(20)">
+      <polygon class="star" points="0,-10 2.9,-3.1 9.5,-3.1 4.1,1.2 6.1,8.0 0,4.5 -6.1,8.0 -4.1,1.2 -9.5,-3.1 -2.9,-3.1"/>
+    </g>
+    <g transform="translate(660,340) rotate(-10)">
+      <polygon class="star" points="0,-10 2.9,-3.1 9.5,-3.1 4.1,1.2 6.1,8.0 0,4.5 -6.1,8.0 -4.1,1.2 -9.5,-3.1 -2.9,-3.1"/>
+    </g>
+
+    <!-- Field waves -->
+    <path class="field" d="M 640 330 C 700 270, 820 270, 880 330"/>
+    <path class="field" d="M 640 330 C 700 390, 820 390, 880 330"/>
+    <path class="field" d="M 640 330 C 560 270, 440 270, 360 330"/>
+    <path class="field" d="M 640 330 C 560 390, 440 390, 360 330"/>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(80,580)">
+    <rect x="0" y="-20" width="1120" height="60" rx="10" fill="#f9fafb" stroke="#e5e7eb"/>
+    <line x1="20" y1="10" x2="60" y2="10" class="edgeP" marker-end="url(#arrowGreen)"/>
+    <text class="legend" x="70" y="15">Positive flow (+)</text>
+
+    <line x1="230" y1="10" x2="270" y2="10" class="edgeN" marker-end="url(#arrowRed)"/>
+    <text class="legend" x="280" y="15">Negative flow (−)</text>
+
+    <path class="field" d="M 470 10 C 500 -10, 540 -10, 570 10"/>
+    <text class="legend" x="580" y="15">Fields (radiative waves)</text>
+
+    <polygon class="star" transform="translate(820,10)" points="0,-8 2.3,-2.5 7.6,-2.5 3.3,1.0 5,6.5 0,3.6 -5,6.5 -3.3,1.0 -7.6,-2.5 -2.3,-2.5"/>
+    <text class="legend" x="840" y="15">Particles (localized)</text>
+
+    <text class="subtitle" x="1000" y="15">Offset shown for clarity</text>
+  </g>
+</svg>
