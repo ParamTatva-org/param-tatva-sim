@@ -1,0 +1,22 @@
+{
+  "name": "barrel-ecal-v0",
+  "cells_x": 32,
+  "cells_y": 32,
+  "cell_size_mm": 10.0,
+  "origin_mm": [
+    0.0,
+    0.0
+  ],
+  "layers": [
+    {
+      "name": "ecal",
+      "type": "sampling",
+      "adc": {
+        "pedestal": 200.0,
+        "gain": 1.0,
+        "noise_sigma": 2.0,
+        "threshold": 205.0
+      }
+    }
+  ]
+}

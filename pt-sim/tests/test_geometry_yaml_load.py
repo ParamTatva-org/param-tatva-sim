@@ -1,5 +1,5 @@
 # pt-sim/tests/test_geometry_yaml_load.py
-import os, yaml
+import os, pyyaml
 from pt_sim.detector.geometry import Geometry
 
 def test_geometry_yaml_load():
