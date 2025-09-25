@@ -47,3 +47,4 @@ warn_unused_ignores = true
 
 [tool.ruff.lint]
 ignore = ["E701","E501"]
+

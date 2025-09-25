@@ -1,7 +1,7 @@
 {
   "particles": [
     {
-      "id": "9538624d-6377-4029-a62a-5eaaa206abd4",
+      "id": "6289cb4c-c0b9-439a-83f3-2a3f376c6eed",
       "locus": "n1",
       "energy": 23.619600000000002,
       "mass2": 27.398736000000007,
@@ -15,9 +15,9 @@
   "fields": [],
   "detections": [
     {
-      "id": "63cc725a-365c-4ca9-98f5-f7a66168c1f1",
+      "id": "96e1ccde-48a5-47f9-9098-91960d67bd76",
       "kind": "particle",
-      "ref_id": "9538624d-6377-4029-a62a-5eaaa206abd4",
+      "ref_id": "6289cb4c-c0b9-439a-83f3-2a3f376c6eed",
       "confidence": 0.96
     }
   ],
