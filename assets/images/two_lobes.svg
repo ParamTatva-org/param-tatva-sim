@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+  <defs>
+    <!-- Arrowheads -->
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/>
+    </marker>
+
+    <!-- Soft background lobes -->
+    <radialGradient id="gradPos" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.05"/>
+    </radialGradient>
+    <radialGradient id="gradNeg" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.05"/>
+    </radialGradient>
+
+    <!-- Node style -->
+    <style>
+      .panel-title{ font: 700 20px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; fill:#111827 }
+      .label{ font: 600 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; fill:#111827 }
+      .node text{ font: 600 13px/1.2 ui-sans-serif; fill:#111827 }
+      .node circle{ fill:#ffffff; stroke:#111827; stroke-width:1.2 }
+      .hint{ font: 12px/1.2 system-ui; fill:#6b7280 }
+      .edgePos{ stroke:#16a34a; stroke-width:2; fill:none }
+      .edgeNeg{ stroke:#dc2626; stroke-width:2; fill:none }
+      .panel{ fill:#ffffff; stroke:#e5e7eb; stroke-width:1 }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1200" height="520" fill="#ffffff"/>
+
+  <!-- Panels -->
+  <rect class="panel" x="40"  y="40" width="520" height="440" rx="14"/>
+  <rect class="panel" x="640" y="40" width="520" height="440" rx="14"/>
+
+  <!-- Titles -->
+  <text class="panel-title" x="300" y="78" text-anchor="middle">Param Tatva — Positive Lobe (+)</text>
+  <text class="hint" x="300" y="100" text-anchor="middle">Flow: left → right (energy outflow)</text>
+
+  <text class="panel-title" x="900" y="78" text-anchor="middle">Param Tatva — Negative Lobe (−)</text>
+  <text class="hint" x="900" y="100" text-anchor="middle">Flow: right → left (energy inflow)</text>
+
+  <!-- Soft lobe backgrounds -->
+  <ellipse cx="300" cy="260" rx="220" ry="150" fill="url(#gradPos)"/>
+  <ellipse cx="900" cy="260" rx="220" ry="150" fill="url(#gradNeg)"/>
+
+  <!-- Positive lobe (+) nodes -->
+  <g transform="translate(60,0)">
+    <g class="node" transform="translate(140,200)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">a</text>
+    </g>
+    <g class="node" transform="translate(240,200)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">i</text>
+    </g>
+    <g class="node" transform="translate(340,200)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">u</text>
+    </g>
+    <g class="node" transform="translate(440,200)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">ha</text>
+    </g>
+
+    <!-- Positive edges (L→R) -->
+    <path class="edgePos" d="M 140 200 C 170 170, 210 170, 240 200" marker-end="url(#arrowGreen)"/>
+    <path class="edgePos" d="M 240 200 C 270 230, 310 230, 340 200" marker-end="url(#arrowGreen)"/>
+    <path class="edgePos" d="M 340 200 C 370 170, 410 170, 440 200" marker-end="url(#arrowGreen)"/>
+
+    <!-- Secondary row -->
+    <g class="node" transform="translate(190,280)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">e</text>
+    </g>
+    <g class="node" transform="translate(290,280)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">o</text>
+    </g>
+    <g class="node" transform="translate(390,280)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">ai</text>
+    </g>
+
+    <path class="edgePos" d="M 190 280 C 220 255, 260 255, 290 280" marker-end="url(#arrowGreen)"/>
+    <path class="edgePos" d="M 290 280 C 320 305, 360 305, 390 280" marker-end="url(#arrowGreen)"/>
+
+    <!-- Cross-link hint -->
+    <path class="edgePos" d="M 240 200 C 260 210, 270 260, 290 280" marker-end="url(#arrowGreen)" stroke-dasharray="4 6"/>
+  </g>
+
+  <!-- Negative lobe (−) nodes -->
+  <g transform="translate(660,0)">
+    <g class="node" transform="translate(440,200)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">a</text>
+    </g>
+    <g class="node" transform="translate(340,200)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">i</text>
+    </g>
+    <g class="node" transform="translate(240,200)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">u</text>
+    </g>
+    <g class="node" transform="translate(140,200)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">ha</text>
+    </g>
+
+    <!-- Negative edges (R→L) -->
+    <path class="edgeNeg" d="M 440 200 C 410 170, 370 170, 340 200" marker-end="url(#arrowRed)"/>
+    <path class="edgeNeg" d="M 340 200 C 310 230, 270 230, 240 200" marker-end="url(#arrowRed)"/>
+    <path class="edgeNeg" d="M 240 200 C 210 170, 170 170, 140 200" marker-end="url(#arrowRed)"/>
+
+    <!-- Secondary row -->
+    <g class="node" transform="translate(390,280)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">e</text>
+    </g>
+    <g class="node" transform="translate(290,280)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">o</text>
+    </g>
+    <g class="node" transform="translate(190,280)">
+      <circle r="18"/>
+      <text text-anchor="middle" dy="5">ai</text>
+    </g>
+
+    <path class="edgeNeg" d="M 390 280 C 360 255, 320 255, 290 280" marker-end="url(#arrowRed)"/>
+    <path class="edgeNeg" d="M 290 280 C 260 305, 220 305, 190 280" marker-end="url(#arrowRed)"/>
+
+    <!-- Cross-link hint -->
+    <path class="edgeNeg" d="M 340 200 C 320 210, 310 260, 290 280" marker-end="url(#arrowRed)" stroke-dasharray="4 6"/>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(60,456)">
+    <rect x="0" y="-16" width="1080" height="32" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
+    <line x1="20" y1="0" x2="60" y2="0" class="edgePos" marker-end="url(#arrowGreen)"/>
+    <text class="label" x="70" y="5">Positive flow (+)</text>
+    <line x1="240" y1="0" x2="280" y2="0" class="edgeNeg" marker-end="url(#arrowRed)"/>
+    <text class="label" x="290" y="5">Negative flow (−)</text>
+    <line x1="500" y1="0" x2="540" y2="0" stroke="#6b7280" stroke-width="2" stroke-dasharray="4 6"/>
+    <text class="label" x="550" y="5">Cross-link hint</text>
+  </g>
+</svg>
