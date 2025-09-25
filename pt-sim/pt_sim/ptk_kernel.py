@@ -10,9 +10,12 @@ PTK Kernel — mypy clean
 from __future__ import annotations
 from dataclasses import dataclass, asdict
 from typing import List, Dict, Tuple, Optional, Any
-import uuid, math, random
+import uuid
+import math
+import random
 
 # -------------------- Data Models --------------------
+
 
 @dataclass
 class Sound:
@@ -23,6 +26,7 @@ class Sound:
     phase: float                 # radians
     coherence: float = 1.0       # 0..1
     label: str = ""
+
 
 @dataclass
 class EmissionConfig:
@@ -42,6 +46,7 @@ class EmissionConfig:
     special_gain: float = 1.2
     conservation_tol: float = 1e-6  # relative allowed drift per step
 
+
 @dataclass
 class Particle:
     id: str
@@ -49,6 +54,7 @@ class Particle:
     energy: float
     mass2: float
     Q: Dict[str, float]
+
 
 @dataclass
 class Field:
@@ -58,6 +64,7 @@ class Field:
     strength: float
     mode: str
 
+
 @dataclass
 class DetectionEvent:
     id: str
@@ -66,6 +73,8 @@ class DetectionEvent:
     confidence: float
 
 # Typed packet instead of List[List[float]]
+
+
 @dataclass
 class Packet:
     edge_id: str
@@ -78,12 +87,15 @@ class Packet:
 
 # -------------------- Kernel --------------------
 
+
 class PTKKernel:
     def __init__(self, ptk: Dict[str, Any]):
         self.ptk = ptk
-        self.nodes: Dict[str, Dict[str, Any]] = {n["id"]: n for n in ptk["nodes"]}
+        self.nodes: Dict[str, Dict[str, Any]] = {
+            n["id"]: n for n in ptk["nodes"]}
         self.edges: List[Dict[str, Any]] = list(ptk["edges"])
-        self.edge_index: Dict[str, Dict[str, Any]] = {e["id"]: e for e in self.edges}
+        self.edge_index: Dict[str, Dict[str, Any]] = {
+            e["id"]: e for e in self.edges}
         # adjacency by (node, polarity)
         self.next_edges: Dict[Tuple[str, int], List[Dict[str, Any]]] = {}
         for e in self.edges:
@@ -93,9 +105,12 @@ class PTKKernel:
     def _edge_gain(self, e: Dict[str, Any]) -> float:
         t = e["type"]
         w = float(e["flow"].get("weight", 1.0))
-        if t == "within_line": return self.cfg.within_gain * w
-        if t == "cross_sutra": return self.cfg.cross_gain * w
-        if t == "special":     return self.cfg.special_gain * w
+        if t == "within_line":
+            return self.cfg.within_gain * w
+        if t == "cross_sutra":
+            return self.cfg.cross_gain * w
+        if t == "special":
+            return self.cfg.special_gain * w
         return 1.0 * w
 
     def _charges_from_node(self, node_id: str) -> Dict[str, float]:
@@ -106,11 +121,12 @@ class PTKKernel:
         if cfg.rng_seed is not None:
             random.seed(cfg.rng_seed)
 
-    def simulate_emission(self, positive: List[Sound], negative: List[Sound], cfg: Optional[EmissionConfig]=None) -> Dict[str, Any]:
+    def simulate_emission(self, positive: List[Sound], negative: List[Sound], cfg: Optional[EmissionConfig] = None) -> Dict[str, Any]:
         self.cfg = cfg or EmissionConfig()
         self._init_rng(self.cfg)
 
-        ledger: Dict[str, Any] = {"input_energy": 0.0, "steps": [], "final": {}}
+        ledger: Dict[str, Any] = {
+            "input_energy": 0.0, "steps": [], "final": {}}
         ledger["input_energy"] = sum(s.energy for s in positive + negative)
 
         # Packets as typed objects
@@ -129,7 +145,8 @@ class PTKKernel:
                         coherence=s.coherence, polarity=s.polarity
                     ))
 
-        seed(positive); seed(negative)
+        seed(positive)
+        seed(negative)
 
         particles: List[Particle] = []
         fields: List[Field] = []
@@ -186,10 +203,13 @@ class PTKKernel:
                     i = j = 0
                     while i < len(P) and j < len(N):
                         p, n = P[i], N[j]
-                        df = abs(p.frequency - n.frequency) / max(1e-6, (p.frequency + n.frequency) / 2.0)
-                        dphi = abs(((p.phase - n.phase + math.pi) % (2 * math.pi)) - math.pi)
+                        df = abs(p.frequency - n.frequency) / \
+                            max(1e-6, (p.frequency + n.frequency) / 2.0)
+                        dphi = abs(((p.phase - n.phase + math.pi) %
+                                   (2 * math.pi)) - math.pi)
                         if df <= self.cfg.cancel_bandwidth and dphi >= (math.pi - self.cfg.cancel_phase_tol):
-                            k = self.cfg.cancel_efficiency * min(p.coherence, n.coherence)
+                            k = self.cfg.cancel_efficiency * \
+                                min(p.coherence, n.coherence)
                             dE = k * min(p.energy, n.energy)
                             p.energy -= dE
                             n.energy -= dE
@@ -214,13 +234,16 @@ class PTKKernel:
                     if pk.prog < 1.0:
                         new_packets.append(pk)
                     else:
-                        outs = self.next_edges.get((target_node, pk.polarity), [])
+                        outs = self.next_edges.get(
+                            (target_node, pk.polarity), [])
                         if not outs:
                             localized_energy += pk.energy
                             if pk.energy >= self.cfg.particle_E_thresh and pk.coherence >= self.cfg.coherence_thresh:
-                                emit_particle(target_node, pk.energy, pk.coherence)
+                                emit_particle(
+                                    target_node, pk.energy, pk.coherence)
                         else:
-                            share = (pk.energy * self.cfg.split_decay) / float(len(outs))
+                            share = (pk.energy * self.cfg.split_decay) / \
+                                float(len(outs))
                             for oe in outs:
                                 new_packets.append(Packet(
                                     edge_id=str(oe["id"]), prog=0.0, energy=share,
@@ -232,7 +255,8 @@ class PTKKernel:
             energy_after = sum(p.energy for p in packets)
 
             removed = max(0.0, energy_before - energy_after)
-            accounted = localized_energy + field_energy + (cancelled_energy * 0.5)
+            accounted = localized_energy + \
+                field_energy + (cancelled_energy * 0.5)
             drift = max(0.0, removed - accounted)
             step_rec = {
                 "step": step,
@@ -255,6 +279,7 @@ class PTKKernel:
             "steps": step,
             "ledger": ledger
         }
+
 
 if __name__ == "__main__":
     # Optional demo only; not executed during import
