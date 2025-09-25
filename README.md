@@ -5,7 +5,7 @@
 
 ## What is [Param Tatva](/param_tatva_from_maheshwara_sutra.md)?
 <img src="assets/images/ptk_plus_minus.svg" width="400"/>
-<img src="assets/images/two_lobes.svg" width="400"/><br/>
+<img src="assets/images/two_lobes.svg"  /><br/>
 
 **Param Tatva Simulation** is a unifying playground inspired by string theory where **Param Tatva** (the fundamental string) gives rise to both **particles** and **forces**, with a lightweight **detector** stack to visualize outcomes.&#x20;
 
