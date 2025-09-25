@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Param Tatva Kernel v1",
+  "type": "object",
+  "required": ["ptk_version", "universe", "nodes", "edges"],
+  "properties": {
+    "ptk_version": {"type": "string", "const": "1.0"},
+    "universe": {"type": "string"},
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "line", "pos"]
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "source", "target", "type", "polarity", "flow"]
+      }
+    }
+  }
+}
